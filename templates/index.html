@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>My Webpage</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table align="center" cellspacing="15">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Time</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>pH</th>
+                <th>Salinity</th>
+             </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
+                <td>{{ item[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table><br>
+    <canvas id="line_chart" height="400" width="400"></canvas>
+    <script src="../chart/Chart.min.js"></script> 
+</body>
+</html>
