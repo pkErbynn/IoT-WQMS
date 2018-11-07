@@ -1,5 +1,5 @@
 import sqlite3
-conect = sqlite3.connect('aquatech.db')
+conect = sqlite3.connect('aquatech.db', check_same_thread=False)
 cursor = conect.cursor()
 
 # def create_table():
@@ -56,8 +56,8 @@ query = """
                     salinity REAL
                 )
         """
-cursor.execute(query)
-conect.commit()
+# cursor.execute(query)
+# conect.commit()
 # conect.close() cannot operate on a closed database
 # cursor.close() cannot operate on a closed cursor
 
@@ -76,9 +76,9 @@ insert3 = """INSERT INTO aquatech(temp, humidity, ph, salinity)
 
 
 
-cursor.execute(insert)
-cursor.execute(insert3, (temp,hum, p, sal))
-
+# cursor.execute(insert)
+# cursor.execute(insert3, (temp,hum, p, sal))
+# conect.commit()
 
 
 def get_values():
