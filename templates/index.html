@@ -11,36 +11,40 @@
 <body>
     <h1 style="color: darkblue"><b><u> WMS </u></b></h1><br>
     <h2> Database </h2>
-    <table align="center" cellspacing="15">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>Time</th>
-                <th>Temperature</th>
-                <th>Humidity</th>
-                <th>pH</th>
-                <th>Salinity</th>
-             </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-            <tr>
-                <td>{{ item[0] }}</td>
-                <td>{{ item[1] }}</td>
-                <td>{{ item[2] }}</td>
-                <td>{{ item[3] }}</td>
-                <td>{{ item[4] }}</td>
-                <td>{{ item[5] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table><br>
+    <div>
+        <table align="center" cellspacing="15">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Time</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                    <th>pH</th>
+                    <th>Salinity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>{{ item[4] }}</td>
+                    <td>{{ item[5] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table><br>
+    </div>
 
 
 
-    <h2>Chart of Data</h2>
-    <canvas id="myChart" width="200" height="100"></canvas>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
+    <h2>Data Chart</h2>
+    <div>
+        <canvas id="myChart" width="auto" height="80"></canvas>
+    </div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
     
     <script src="chartjs.js"></script>
     <script type="text/javascript">
@@ -48,10 +52,13 @@
         var myChart = new Chart(ctx, {
             type: 'line', //radar,bar,boughnut & pie, polar Area, bubble, scatter, area, mixed
             data: {
-                labels: ["Erbynn", "Isaac", "Josiah", "Green", "Purple", "Orange"],
+                labels: ["Erbynn", "Isaac", "Josiah", "Green", "Purple", "Orange"], //this is for the x-axis...all the datasets share a common x-axis
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+
+                    // ################### datasets one ####################
+                    label: 'Turbidity Dataset',
+                    data: [12, 19, 53, 85, 22, 83],
+                    fill: true,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -68,58 +75,78 @@
                         'rgba(153, 102, 255, 1)',
                         'rgba(255, 159, 64, 1)'
                     ],
-                    borderWidth: 1
-                }]
-            },
+                    borderWidth: 1  
+                    },  //end of dataset 1
+
+
+                        // ##### second dataset #####
+                    {
+                        label: 'Fish Population',
+                        data: [58, 45, 60, 19, 62, 72]
+                    }, //end of dataset 2
+
+
+
+                        // ############ third dataSet #######
+                    {
+                        label: 'TemperatureDataset',
+                        fill: true,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(75,192,192, 0.4)",
+                        borderColor: 'rgba(75,192,192,1)',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor:'rgba(75,192,192,1)',
+                        pointHoverBorderColor:'rgba(220,220,220,1)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: [65, 59, 80, 81, 56, 55, 40], 
+                    }, //end of dataset 3
+
+                ] // end of entire dataset
+            }, // end of object
 
 
 
 // ######################################### Data 2 ###################################################
             //  data: {
-            //     labels: ['January', 'February', 'March', 'April', 'June', 'July'],
-            //     datasets: [{
-            //         label: 'My First dataset',
-            //         fill: false,
-            //         lineTension: 0.1,
-            //         backgroundColor: "rgba(75,192,192, 0.4)",
-            //         borderColor: 'rgba(75,192,192,1)',
-            //         borderDash: [],
-            //         borderDashOffset: 0.0,
-            //         borderJoinStyle: 'miter',
-            //         pointBorderColor: 'rgba(75,192,192,1)',
-            //         pointBackgroundColor: '#fff',
-            //         pointBorderWidth: 1,
-            //         pointHoverRadius: 5,
-            //         pointHoverBackgroundColor:'rgba(75,192,192,1)',
-            //         pointHoverBorderColor:'rgba(220,220,220,1)',
-            //         pointHoverBorderWidth: 2,
-            //         pointRadius: 1,
-            //         pointHitRadius: 10,
-            //         data: [65, 59, 80, 81, 56, 55, 40],
-            //     }]
+                // labels: ['January', 'February', 'March', 'April', 'June', 'July'],
+                // datasets: [{
+                //     label: 'dataset',
+                //     fill: false,
+                //     lineTension: 0.1,
+                //     backgroundColor: "rgba(75,192,192, 0.4)",
+                //     borderColor: 'rgba(75,192,192,1)',
+                //     borderDash: [],
+                //     borderDashOffset: 0.0,
+                //     borderJoinStyle: 'miter',
+                //     pointBorderColor: 'rgba(75,192,192,1)',
+                //     pointBackgroundColor: '#fff',
+                //     pointBorderWidth: 1,
+                //     pointHoverRadius: 5,
+                //     pointHoverBackgroundColor:'rgba(75,192,192,1)',
+                //     pointHoverBorderColor:'rgba(220,220,220,1)',
+                //     pointHoverBorderWidth: 2,
+                //     pointRadius: 1,
+                //     pointHitRadius: 10,
+                //     data: [65, 59, 80, 81, 56, 55, 40],
+                // }]
             // },
 // ######################### End of Data 2 #############################################
 
 
-//   ########################  second dataset ########################
-        //         datasets: [{
-        //             label: 'Population',
-        //             data: [
-        //                 617458,
-        //                 181045,
-        //                 153060,
-        //                 106519,
-        //                 105162,
-        //                 95072
-        //     ]
-        // }]
-// ########################## end of 2nd datasets ########################3
 
             options: {
-                // showLines: true,
+                // showLines: false,
                 elements:{
                     line:{
-                        // tension:0,
+                        // tension:0.1,
                     }
                 },
                 scales: {
