@@ -1,12 +1,12 @@
 from flask import Flask, render_template
-from sqlite import get_values
+from sqliteAqua import *
 # from sample import read_data_from_db
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
-    items = get_values()
+    items = read_data_from_db()
     # [(23, '2018-11-02 19:52:31', 24.0, 50.0, 45.3, 40.3), (24, '2018-11-02 19:52:31', 35.0, 44.0, 25.0, 40.0)]
     # items = read_data_from_db()
     return render_template("index.html", items=items)
