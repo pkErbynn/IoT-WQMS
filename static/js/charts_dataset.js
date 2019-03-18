@@ -15,11 +15,18 @@ const temperatureChart = new Chart(temperature, {
         datasets: [{
             label: "Dataset for all temperature measurements",
             borderColor: 'rgb(255, 99, 132)',
-            data: [15, 10, 5, 2],
+            data: [25, 10, 5, 32, 33],
+            fill: true,
+            backgroundColor: ['rgba(00, 255, 00, 0.1)',],
+            borderColor: ['rgba(54, 162, 235, 1)',],
+            borderWidth: 1.5
         }]
     },
     // Configuration options go here
-    options: {}
+    options: {
+        
+        
+    }
 });
 
 const turbidityChart = new Chart(turbidity, {
@@ -32,10 +39,21 @@ const turbidityChart = new Chart(turbidity, {
             label: "Dataset for Turbidity measurements",
             borderColor: 'rgb(255, 99, 132)',
             data: [15, 10, 5, 2],
+            backgroundColor: ['rgba(00, 255, 00, 0.1)',],
+            borderColor: ['rgba(54, 162, 235, 1)',],
+            borderWidth: 1.5,
         }]
     },
     // Configuration options go here
-    options: {}
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
 });
 
 const phChart = new Chart(ph, {
@@ -48,6 +66,9 @@ const phChart = new Chart(ph, {
             label: "Dataset for pH",
             borderColor: 'rgb(255, 99, 132)',
             data: [15, 10, 5, 2],
+            backgroundColor: ['rgba(00, 255, 00, 0.1)',],
+            borderColor: ['rgba(54, 162, 235, 1)',],
+            borderWidth: 1.5
         }]
     },
     // Configuration options go here
@@ -64,6 +85,9 @@ const waterChart = new Chart(water, {
             label: "Dataset for Water Level ",
             borderColor: 'rgb(255, 99, 132)',
             data: [15, 10, 5, 2],
+            backgroundColor: ['rgba(00, 255, 00, 0.1)',],
+            borderColor: ['rgba(54, 162, 235, 1)',],
+            borderWidth: 1.5
         }]
     },
     // Configuration options go here
