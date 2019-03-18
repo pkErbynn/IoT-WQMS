@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <header>
+        <div class="container-fluid bg-white p-3 text-muted shadow d-flex justify-content-between">
+            <div><h4><span class="text-success">IOT</span> <span class="text-info">WQMS</span>-MONITOR</h4></div>
+            <div>
+                <a href="dashboard.html" class="btn btn-success px-3">Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container-fluid">
+            <div class="row my-5">
+                <div class="col-12 col-md-6 m-auto mx-2">
+                    <div>
+                        <img src="./images/img2.jpeg" width="100%" height="100%" alt="Photo" class="rounded">
+                    </div>
+                </div>
+                <div class="col-9 m-auto col-md-4">
+                    <form class="text-center mt-3">
+                        <p class="h3 my-5 mt-md-0">LOGIN</p>
+                        <div class="form-group">
+                            <input type="email"  class="form-control" name="email" id="email" placeholder="email address">
+                        </div>
+                        <div class="form-group">
+                            <input type="password"  class="form-control" name="password" id="password" placeholder="password">
+                        </div>
+                        <div class="form-group text-primary">
+                            <input type="checkbox" name="password" id="password" placeholder="password"> Keep me logged in
+                        </div>
+                        <button class="btn btn-primary btn-block">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,154 +1,74 @@
 <!DOCTYPE html>
 <html>
- <head>
-    <title>My Webpage</title>
-    <style>
-        body{
-            text-align: center;
-        }
-    </style>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/style/style.css">
+    
 </head>
 <body>
-    <h1 style="color: darkblue"><b><u> WMS </u></b></h1><br>
-    <h2> Database </h2>
-    <div>
-        <table align="center" cellspacing="15">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Time</th>
-                    <th>Temperature</th>
-                    <th>Humidity</th>
-                    <th>pH</th>
-                    <th>Salinity</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                <tr>
-                    <td>{{ item[0] }}</td>
-                    <td>{{ item[1] }}</td>
-                    <td>{{ item[2] }}</td>
-                    <td>{{ item[3] }}</td>
-                    <td>{{ item[4] }}</td>
-                    <td>{{ item[5] }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table><br>
-    </div>
-    
+        <header>
+            <div class="container-fluid bg-white p-3 text-muted shadow d-flex justify-content-between">
+                <div><h4><span class="text-success">IOT</span> <span class="text-info">WQMS</span>-MONITOR</h4></div>
+                <div>
+                    <a href="dashboard.html" class="btn btn-success px-3">Dashboard</a>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <div class="container-fluid">
+                <div class="row my-5">
+                    <div class="col-12 col-md-6 m-auto mx-2">
+                        <div>
+                            <img src="../static/images/img2.jpeg" width="100%" height="100%" alt="Photo" class="rounded">
+                        </div>
+                    </div>
+                    <div class="col-9 m-auto col-md-4">
+                        <form class="text-center mt-3">
+                            <p class="h3 my-5 mt-md-0">LOGIN</p>
+                            <div class="form-group">
+                                <input type="email"  class="form-control" name="email" id="email" placeholder="email address">
+                            </div>
+                            <div class="form-group">
+                                <input type="password"  class="form-control" name="password" id="password" placeholder="password">
+                            </div>
+                            <div class="form-group text-primary">
+                                <input type="checkbox" name="password" id="password" placeholder="password"> Keep me logged in
+                            </div>
+                            <button class="btn btn-primary btn-block">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
-    <h2>Data Chart</h2>
-    <div>
-        <canvas id="myChart" width="auto" height="80"></canvas>
-    </div>
-    <button id="randomizeData">Randomize Data</button>
-    
-    <script src="../static/chartjs.js"></script>
-    <script type="text/javascript">
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line', //radar,bar,boughnut & pie, polar Area, bubble, scatter, area, mixed
-            data: {
-                labels: ["Mon", "Tue", "Wed", "Wed", "Thurs", "Fri"], //this is for the x-axis...all the datasets share a common x-axis
-                datasets: [
-                    // ################### datasets one ####################
-                    {
-                        label: 'Turbidity Dataset',
-                        data: [12, 19, 53, 85, 22, 83],
-                        fill: true,
-                        // backgroundColor: 'rgba(00, 255, 00, 0.1)',
-                        backgroundColor: ['rgba(00, 255, 00, 0.1)',],
-                        borderColor: ['rgba(54, 162, 235, 1)',],
-                        borderWidth: 1
-                    },  //end of dataset 1
+        <footer>
+                <div class="container-fluid p-3 text-center text-light bg-info">
+                  <div class="container">
+                    All right Reserved  |   
+                    Copy Right &copy; 2019 | WQMS <br>
+                    <a href="#"><i class="fab fa-facebook fa-lg mx-2 my-4 text-warning"></i></a>
+                    <a href="#"><i class="fab fa-instagram fa-lg mx-2 my-4 text-warning"></i></a>
+                    <a href="#"><i class="fab fa-twitter fa-lg mx-2 my-4 text-warning"></i></a>
+                    <a href="#"><i class="fab fa-linkedin fa-lg mx-2 my-4 text-warning"></i></a>
+                  </div>
+                </div>
+        </footer>
 
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
 
-                        // ##### second dataset #####
-                    {
-                        label: 'Temperature',
-                        backgroundColor: 'rgba(00, 255, 00, 0.1)',
-                        data: [58, 45, 60, 19, 62, 72]
-                    }, //end of dataset 2
-
-
-
-                        // ############ third dataSet #######
-                    {
-                        label: 'pH',
-                        data: [65, 59, 80, 81, 56, 55, 40], 
-                        fill: true,
-                        // lineTension: 0.1,
-                        // backgroundColor: "rgba(75,192,192, 0.4)",
-                        // borderColor: 'rgba(75,192,192,1)',
-                        // borderDash: [],
-                        // borderDashOffset: 0.0,
-                        // borderJoinStyle: 'miter',
-                        // pointBorderColor: 'rgba(75,192,192,1)',
-                        // pointBackgroundColor: '#fff',
-                        // pointBorderWidth: 1,
-                        // pointHoverRadius: 5,
-                        // pointHoverBackgroundColor:'rgba(75,192,192,1)',
-                        // pointHoverBorderColor:'rgba(220,220,220,1)',
-                        // pointHoverBorderWidth: 2,
-                        // pointRadius: 1,
-                        // pointHitRadius: 10,
-                        // borderWidth: 2,
-                    }, //end of dataset 3
-
-                ] // end of entire dataset
-            }, // end of object
-
-
-
-// ######################################### Data 2 ###################################################
-            //  data: {
-                // labels: ['January', 'February', 'March', 'April', 'June', 'July'],
-                // datasets: [{
-                //     label: 'dataset',
-                //     fill: false,
-                //     lineTension: 0.1,
-                //     backgroundColor: "rgba(75,192,192, 0.4)",
-                //     borderColor: 'rgba(75,192,192,1)',
-                //     borderDash: [],
-                //     borderDashOffset: 0.0,
-                //     borderJoinStyle: 'miter',
-                //     pointBorderColor: 'rgba(75,192,192,1)',
-                //     pointBackgroundColor: '#fff',
-                //     pointBorderWidth: 1,
-                //     pointHoverRadius: 5,
-                //     pointHoverBackgroundColor:'rgba(75,192,192,1)',
-                //     pointHoverBorderColor:'rgba(220,220,220,1)',
-                //     pointHoverBorderWidth: 2,
-                //     pointRadius: 1,
-                //     pointHitRadius: 10,
-                //     data: [65, 59, 80, 81, 56, 55, 40],
-                // }]
-            // },
-// ######################### End of Data 2 #############################################
-
-
-
-            options: {
-                // showLines: false,
-                elements:{
-                    line:{
-                        // tension:0.1,
-                    }
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
-
-    </script>
+    <script src="../static/bootstrap-4.1.3/jquery.min.js"></script>
+    <script src="../static/bootstrap-4.1.3/popper.min.js"></script>
+    <script src="../static/js/main.js"></script>
 </body>
 </html>
-
