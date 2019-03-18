@@ -20,7 +20,7 @@
     </style>
     
 </head>
-<body>
+<body id="mybody">
     <header>
         <div class="container-fluid bg-white p-3 text-muted shadow d-flex justify-content-between">
             <div><h4><span class="text-success">IoT</span> <span class="text-info">WQMS</span>-MONITOR</h4></div>
@@ -37,10 +37,10 @@
 
     <div class="bg-info sidebar text-light pt-3" id='transparent'>
             <div class="container">
-                    <a  href ="index.html" class="btn btn-info btn-block sBarBtn border-bottom ">Home</a>
-                    <a  href ="dashboard.html" class="btn btn-info btn-block sBarBtn border-bottom ">Dashboard</a>
-                    <a  href ="charts.html" class="btn btn-info btn-block sBarBtn border-bottom active">Charts</a>
-                    <a  href ="index.html" class="btn btn-info btn-block sBarBtn">Logout</a>
+                    <a  href="/index" class="btn btn-info btn-block sBarBtn border-bottom ">Home</a>
+                    <a  href="/dashboard" class="btn btn-info btn-block sBarBtn border-bottom ">Dashboard</a>
+                    <a  href="/chart" class="btn btn-info btn-block sBarBtn border-bottom active">Charts</a>
+                    <a  href="/index" class="btn btn-info btn-block sBarBtn">Logout</a>
             </div>
         </div>
 
@@ -61,7 +61,7 @@
             <div class="container m-auto text-center text-muted">
                 <div class="card shadow p-3 my-3 chartsCard" style="height: auto">
                     <h3 class="card-title">Temperature Chart</h3>
-                    <canvas id="temperature" class="resize" height="400px"></canvas>
+                    <canvas id="temperature" name="temp" class="rsize" height="400px"></canvas>
                     <br>
                 </div><br>
 

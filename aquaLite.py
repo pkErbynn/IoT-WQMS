@@ -3,54 +3,57 @@ import random
 import datetime
 import time
 
-# con = sqlite3.connect('aquaBase.db')
-con = sqlite3.connect(':memory:')
-cursor = con.cursor()
 
 def create_table():
+    con = sqlite3.connect('iot_wqms_data.db')
+# con = sqlite3.connect(':memory:')
+    cursor = con.cursor()
 
     cursor.execute( 
-        """ CREATE TABLE IF NOT EXISTS aquaBase( 
+        """ CREATE TABLE IF NOT EXISTS iot_wqms_table( 
                     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                     Time TIMESdTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-                    temp REAL, 
-                    humidity REAL, 
+                    temperature REAL, 
+                    turbidity REAL, 
                     ph REAL, 
-                    salinity REAL) """)
+                    water_level REAL) """
+    )
 
+    con.commit()
 
 # def data_entry():
 #     cursor.execute(
-#         """ INSERT INTO aquaBase(temp, humidity, ph, salinity) 
+#         """ INSERT INTO iot_wqms_data(temp, humidity, ph, salinity) 
 #             VALUES(23,56,35.3,40.3) """)
-#     con.commit()
 
 
 def dynamic_data_entry():
-    con = sqlite3.connect('aquaBase.db')
+    con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
 
-    temp = random.randrange(10,20)
-    humidity = random.randrange(10, 30)
+    temperature = random.randrange(10,20)
+    turbidity = random.randrange(10, 30)
     ph = random.randint(0, 10)
-    salinity = random.randint(50, 120)
-    cursor.execute(""" INSERT INTO aquaBase(temp, humidity, ph, salinity) VALUES (?, ?, ?, ?) """,
-                    (temp, humidity, ph, salinity))
+    water_level = random.randint(50, 120)
+    cursor.execute(""" INSERT INTO iot_wqms_table(temperature, turbidity, ph, water_level) 
+                       VALUES (?, ?, ?, ?) """,
+                    (temperature, turbidity, ph, water_level))
     con.commit()     #commit function only associated with the connection
     
 
 
 def read_data_from_db():
-    con = sqlite3.connect('aquaBase.db')
+    con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
 
-    cursor.execute(" SELECT * FROM aquaBase ")
+    cursor.execute(" SELECT * FROM iot_wqms_table ")
     copy_data = cursor.fetchall()
     # for row in copy_data:
     #     print(row)
     # data_lis__name__, representing the current file t = list(copy_data)
     return copy_data
     
+
 
 # create_table()
 # for i in range(5):    
@@ -59,7 +62,9 @@ def read_data_from_db():
 
 # for row in read_data_from_db():
 #     print(row):memory::memory::memory:memory::memory::memory::memory::
-read_data_from_db()
+
+dynamic_data_entry()
+print(read_data_from_db())
  
 # data_entry()
 
@@ -76,7 +81,7 @@ read_data_from_db()
 
 
 # insert = """
-#              INSERT INTO aquaBase(temp, humidity, ph, salinity) 
+#              INSERT INTO iot_wqms_data(temp, humidity, ph, salinity) 
 #              VALUES(100,200,300,400)
 #          """
 # cursor.execute(insert)
@@ -86,7 +91,7 @@ read_data_from_db()
 
 
 # def get_values():
-#     cursor.execute("SELECT * FROM aquaBase")
+#     cursor.execute("SELECT * FROM iot_wqms_data")
 #     return list(cursor.fetchall())
 
 # get_values()
@@ -102,7 +107,7 @@ read_data_from_db()
 
 
 # query = """
-#         CREATE TABLE IF NOT EXISTS aquaBase( 
+#         CREATE TABLE IF NOT EXISTS iot_wqms_data( 
 #                     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 #                     Time TIMESdTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 #                     temp REAL, 
@@ -116,7 +121,7 @@ read_data_from_db()
 
 
 # insert = """
-#             INSERT INTO aquaBase(temp, humidity, ph, salinity) 
+#             INSERT INTO iot_wqms_data(temp, humidity, ph, salinity) 
 #             VALUES(24,50,45.3,40.3)
 #         """
 
@@ -124,7 +129,7 @@ read_data_from_db()
 # p=25
 # hum=44
 # temp=35
-# insert3 = """INSERT INTO aquaBase(temp, humidity, ph, salinity) 
+# insert3 = """INSERT INTO iot_wqms_data(temp, humidity, ph, salinity) 
 #              VALUES(?, ?, ?, ?)"""
 
 

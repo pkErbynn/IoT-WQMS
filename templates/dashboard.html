@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="../static/bootstrap-4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../static/style/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/style.css') }}"> -->
     
     <style>
         #transparent{
@@ -37,10 +38,10 @@
 
         <div class="bg-info sidebar text-light pt-3" id='transparent'>
             <div class="container">
-                    <a  href ="index.html" class="btn btn-info btn-block sBarBtn border-bottom ">Home</a>
-                    <a  href ="dashboard.html" class="btn btn-info btn-block sBarBtn border-bottom  active">Dashboard</a>
-                    <a  href ="charts.html" class="btn btn-info btn-block sBarBtn border-bottom ">Charts</a>
-                    <a  href ="index.html" class="btn btn-info btn-block sBarBtn">Logout</a>
+                    <a  href="/index" class="btn btn-info btn-block sBarBtn border-bottom ">Home</a>
+                    <a  href="dashboard" class="btn btn-info btn-block sBarBtn border-bottom  active">Dashboard</a>
+                    <a  href="/chart" class="btn btn-info btn-block sBarBtn border-bottom ">Charts</a>
+                    <a  href="/index" class="btn btn-info btn-block sBarBtn">Logout</a>
             </div>
         </div>
 
@@ -48,7 +49,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Dashborad</li>
+                    <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
 
             </nav>
@@ -56,39 +57,47 @@
         <div class="container my-3">
             <div class="row text-center">
                 <div class="col-6 col-sm-3">
-                    <div class="card custon-shadow mt-3">
+                        <a href="/chart">
+                            <div class="card custon-shadow mt-3">
                                 <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">TEMPERATURE</h6>
                                 <p class="card-text">
                                     <span class="h2">45 </span>
                                     <span class="text-primary">d/C</span>
                                 </p>
-                        </div>
+                            </div>
+                        </a>
                 </div>
                 <div class="col-6 col-sm-3">
-                    <div class="card custon-shadow mt-3">
+                        <a href="/chart">
+                            <div class="card custon-shadow mt-3">
                                 <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">TURBIDITY</h6>
                                 <p class="card-text">
                                     <span class="h2">150 </span>
                                     <span class="text-primary">NTU</span>
                                 </p>
-                        </div>
-                </div>
-                <div class="col-6 col-sm-3">
-                    <div class="card custon-shadow mt-3">
-                                <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">PH</h6>
-                                <p class="card-text">
-                                    <span class="h2">7 </span>
-                                </p>
                             </div>
+                        </a>
                 </div>
                 <div class="col-6 col-sm-3">
-                    <div class="card custon-shadow mt-3">
-                        <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">H2O Level</h6>
-                            <p class="card-text">
-                                <span class="h2">200 </span>
-                                <span class="text-primary">cm</span>
-                            </p>
-                        </div>
+                    <a href="/chart">
+                        <div class="card custon-shadow mt-3">
+                                    <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">PH</h6>
+                                    <p class="card-text">
+                                        <span class="h2">7 </span>
+                                    </p>
+                                </div>
+                    </a>
+                </div>
+                <div class="col-6 col-sm-3">
+                        <a href="/chart">
+                            <div class="card custon-shadow mt-3">
+                                <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">H2O Level</h6>
+                                    <p class="card-text">
+                                        <span class="h2">200 </span>
+                                        <span class="text-primary">cm</span>
+                                    </p>
+                                </div>
+                        </a>
                 </div>
             </div>
         </div>

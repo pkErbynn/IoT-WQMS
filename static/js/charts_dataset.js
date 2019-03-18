@@ -24,7 +24,19 @@ const temperatureChart = new Chart(temperature, {
     },
     // Configuration options go here
     options: {
-        
+        legend: false,
+        elements: {
+            line: {
+                fill: false,
+            },
+            point: {
+                // hoverBackgroundColor: makeHalfAsOpaque,
+                // radius: adjustRadiusBasedOnData,
+                
+                hoverRadius: 8,
+            }
+
+        }
         
     }
 });
@@ -52,6 +64,10 @@ const turbidityChart = new Chart(turbidity, {
                     beginAtZero:true
                 }
             }]
+        },
+        legend: false,
+        elements: {
+            
         }
     }
 });
@@ -68,11 +84,13 @@ const phChart = new Chart(ph, {
             data: [15, 10, 5, 2],
             backgroundColor: ['rgba(00, 255, 00, 0.1)',],
             borderColor: ['rgba(54, 162, 235, 1)',],
-            borderWidth: 1.5
+            borderWidth: 1.5,
         }]
     },
     // Configuration options go here
-    options: {}
+    options: {
+        legend: false,
+    }
 });
 
 const waterChart = new Chart(water, {
@@ -86,10 +104,12 @@ const waterChart = new Chart(water, {
             borderColor: 'rgb(255, 99, 132)',
             data: [15, 10, 5, 2],
             backgroundColor: ['rgba(00, 255, 00, 0.1)',],
-            borderColor: ['rgba(54, 162, 235, 1)',],
+            borderColor: '#4dc9f6',
             borderWidth: 1.5
         }]
     },
     // Configuration options go here
-    options: {}
+    options: {
+        legend: false,
+    }
 });
