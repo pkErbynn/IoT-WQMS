@@ -5,8 +5,8 @@ import time
 
 
 def create_table():
-    con = sqlite3.connect('iot_wqms_data.db')
-# con = sqlite3.connect(':memory:')
+    # con = sqlite3.connect('iot_wqms_data.db')
+    con = sqlite3.connect(':memory:')
     cursor = con.cursor()
 
     cursor.execute( 
@@ -19,7 +19,7 @@ def create_table():
                     water_level REAL) """
     )
 
-    con.commit()
+    con.commit()   # without commit, error
 
 # def data_entry():
 #     cursor.execute(
@@ -54,17 +54,27 @@ def read_data_from_db():
     return copy_data
     
 
+def read5_data_from_db():
+    con = sqlite3.connect('iot_wqms_data.db')
+    cursor = con.cursor()
+
+    cursor.execute(" SELECT * from (select * FROM iot_wqms_table ORDER BY id DESC LIMIT 5) ORDER by id ASC")
+    copy_data = cursor.fetchall()
+    # for row in copy_data:
+    #     print(row)
+    # data_lis__name__, representing the current file t = list(copy_data)
+    return copy_data
 
 # create_table()
 # for i in range(5):    
 #     dynamic_data_entry()
-#     time.sleep(1)
+# #     time.sleep(1)
 
 # for row in read_data_from_db():
 #     print(row):memory::memory::memory:memory::memory::memory::memory::
 
-dynamic_data_entry()
-print(read_data_from_db())
+# dynamic_data_entry()
+print(read5_data_from_db())
  
 # data_entry()
 

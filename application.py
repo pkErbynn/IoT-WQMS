@@ -1,5 +1,5 @@
 from flask import Flask, render_template, flash, redirect, render_template, request, session, abort
-from aquaLite import read_data_from_db
+from aquaLite import read5_data_from_db
 import datetime
 # from sample import read_data_from_db
 app = Flask(__name__)
@@ -35,7 +35,8 @@ def chart():
 
 @app.route("/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
+    items = read5_data_from_db()
+    return render_template("dashboard.html", data=items)
 
 
 

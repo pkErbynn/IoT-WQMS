@@ -45,6 +45,11 @@
             </div>
         </div>
 
+
+        <!-- {% with data | last as datum  %}
+        {%  for datum in data  %}
+            <p>datum[0] </p>
+        {% endWith %} -->
         <div class="container mt-4">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -61,7 +66,11 @@
                             <div class="card custon-shadow mt-3">
                                 <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">TEMPERATURE</h6>
                                 <p class="card-text">
-                                    <span class="h2">45 </span>
+                                    <span class="h2">
+                                        {% for datum in data  %}
+                                            datum[0]
+                                        {% endWith %}
+                                     </span>
                                     <span class="text-primary">d/C</span>
                                 </p>
                             </div>
