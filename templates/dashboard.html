@@ -46,10 +46,6 @@
         </div>
 
 
-        <!-- {% with data | last as datum  %}
-        {%  for datum in data  %}
-            <p>datum[0] </p>
-        {% endWith %} -->
         <div class="container mt-4">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -60,6 +56,10 @@
             </nav>
         </div>
         <div class="container my-3">
+            {% print(data) %}
+            {% for d in data %}
+                print(d[0])
+            {%  endfor %}
             <div class="row text-center">
                 <div class="col-6 col-sm-3">
                         <a href="/chart">
@@ -67,9 +67,9 @@
                                 <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">TEMPERATURE</h6>
                                 <p class="card-text">
                                     <span class="h2">
-                                        {% for datum in data  %}
+                                        <!-- {% for datum in data  %}
                                             datum[0]
-                                        {% endWith %}
+                                        {% endfor %} -->
                                      </span>
                                     <span class="text-primary">d/C</span>
                                 </p>

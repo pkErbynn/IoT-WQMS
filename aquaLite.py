@@ -21,13 +21,8 @@ def create_table():
 
     con.commit()   # without commit, error
 
-# def data_entry():
-#     cursor.execute(
-#         """ INSERT INTO iot_wqms_data(temp, humidity, ph, salinity) 
-#             VALUES(23,56,35.3,40.3) """)
 
-
-def dynamic_data_entry():
+def post_dynamic_data_entry():
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
 
@@ -42,16 +37,16 @@ def dynamic_data_entry():
     
 
 
-def read_data_from_db():
+def read_all_data_from_db():
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
 
     cursor.execute(" SELECT * FROM iot_wqms_table ")
-    copy_data = cursor.fetchall()
-    # for row in copy_data:
+    fetch_data = cursor.fetchall()
+    # for row in fetch_data:
     #     print(row)
-    # data_lis__name__, representing the current file t = list(copy_data)
-    return copy_data
+    # data_lis__name__, representing the current file t = list(fetch_data)
+    return fetch_data
     
 
 def read5_data_from_db():
@@ -59,11 +54,12 @@ def read5_data_from_db():
     cursor = con.cursor()
 
     cursor.execute(" SELECT * from (select * FROM iot_wqms_table ORDER BY id DESC LIMIT 5) ORDER by id ASC")
-    copy_data = cursor.fetchall()
-    # for row in copy_data:
+    fetch_data = cursor.fetchall()
+
+    # for row in fetch_data:
     #     print(row)
-    # data_lis__name__, representing the current file t = list(copy_data)
-    return copy_data
+    # data_lis__name__, representing the current file t = list(fetch_data)
+    return fetch_data
 
 # create_table()
 # for i in range(5):    
@@ -73,8 +69,8 @@ def read5_data_from_db():
 # for row in read_data_from_db():
 #     print(row):memory::memory::memory:memory::memory::memory::memory::
 
-# dynamic_data_entry()
-print(read5_data_from_db())
+# post_dynamic_data_entry()
+# print(read5_data_from_db())
  
 # data_entry()
 
@@ -87,9 +83,27 @@ print(read5_data_from_db())
 
 
 
+############################# ANOTHER LEVEL ################################################################################
+
+def push_Data(data):
+    con = sqlite3.connect('iot_wqms_data.db')
+    cursor = con.cursor()
+
+    # print("temperature:", data['temperature'])
+
+    cursor.execute(""" INSERT INTO iot_wqms_table( temperature, turbidity, ph, water_level) 
+                       VALUES (?, ?, ?, ?) """,
+                   (data["temperature"], data["turbidity"], data["ph"], data["water_level"]))
+    con.commit()
 
 
 
+
+
+
+
+
+#############################################################################################################
 # insert = """
 #              INSERT INTO iot_wqms_data(temp, humidity, ph, salinity) 
 #              VALUES(100,200,300,400)
