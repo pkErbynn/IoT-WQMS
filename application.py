@@ -54,6 +54,25 @@ def chart():
     return render_template("chart.html")
 
 
+@app.route("/tempChart")
+def temperature():
+    return render_template("tempChart.html")
+
+@app.route("/phChart")
+def ph():
+    return render_template("phChart.html")
+
+
+@app.route("/turbChart")
+def turb():
+    return render_template("turbChart.html")
+
+
+@app.route("/waterlevelChart")
+def waterlevel():
+    return render_template("waterlevelChart.html")
+
+
 @app.route("/dashboard")
 def dashboard():
     # items = read5_data_from_db()

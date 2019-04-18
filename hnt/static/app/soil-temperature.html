@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Mirrored from qbgrow.com/magen/iot-admin/app/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 14:07:52 GMT -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@vueghost">
+    <meta name="twitter:creator" content="@vueghost">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="magen-iot-admin">
+    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="twitter:image" content="../../../../vueghost.com/magen-iot-admin/img/magen-iot-admin-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://vueghost.com/magen-iot-admin">
+    <meta property="og:title" content="Bracket">
+    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+
+    <meta property="og:image" content="../../../../vueghost.com/magen-iot-admin/img/magen-iot-admin-social.png">
+    <meta property="og:image:secure_url" content="../../../../vueghost.com/magen-iot-admin/img/magen-iot-admin-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="author" content="vueghost">
+
+
+    <title>Soil Temperature</title>
+
+    <!-- vendor css -->
+    <link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="../lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+
+    <!-- magen-iot-admin CSS -->
+    <link rel="stylesheet" href="../css/magen-iot-admin.css">
+  </head>
+
+  <body>
+
+    <!-- ##### SIDEBAR LOGO ##### -->
+    <div class="kt-sideleft-header">
+      <div class="kt-logo"><a href="index.html">PrecisionFarming</a></div>
+      <div id="ktDate" class="kt-date-today">
+
+      </div>
+      <div class="input-group kt-input-search">
+        <input type="text" class="form-control" placeholder="Search...">
+        <span class="input-group-btn mg-0">
+          <button class="btn"><i class="fa fa-search"></i></button>
+        </span>
+      </div><!-- input-group -->
+    </div><!-- kt-sideleft-header -->
+
+    <!-- ##### SIDEBAR MENU ##### -->
+    <div class="kt-sideleft">
+      <label class="kt-sidebar-label">Navigation</label>
+      <ul class="nav kt-sideleft-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link active">
+            <img src="../img/house.png" class="wd-25 rounded-circle" alt="  ">            
+            <span>Dashboard</span>
+          </a>
+
+    </div><!-- kt-sideleft -->
+
+    <!-- ##### HEAD PANEL ##### -->
+    <div class="kt-headpanel">
+      <div class="kt-headpanel-left">
+        <a id="naviconMenu" href="#" class="kt-navicon d-none d-lg-flex"><img src="http://qbgrow.com/magen/iot-admin/img/menu.svg" width="30"/></a>
+        <a id="naviconMenuMobile" href="#" class="kt-navicon d-lg-none"><i class="icon ion-navicon-round"></i></a>
+      </div><!-- kt-headpanel-left -->
+
+      <div class="kt-headpanel-right">
+        <div class="dropdown dropdown-notification">
+          <a href="#" class="nav-link pd-x-7 pos-relative" data-toggle="dropdown">
+            <img src="http://qbgrow.com/magen/iot-admin/img/notification.svg" height="24"/>
+
+            <!-- start: if statement -->
+            <span class="square-8 bg-danger pos-absolute t-15 r-0 rounded-circle"></span>
+            <!-- end: if statement -->
+          </a>
+          <div class="dropdown-menu wd-300 pd-0-force">
+            <div class="dropdown-menu-header">
+              <label>Notifications</label>
+              <a href="#">Mark All as Read</a>
+            </div><!-- d-flex -->
+
+            <div class="media-list">
+              <!-- loop starts here -->
+              <a href="#" class="media-list-link read">
+                <div class="media pd-x-20 pd-y-15">
+                  <img src="../img/img8.jpg" class="wd-40 rounded-circle" alt="">
+                  <div class="media-body">
+                    <p class="tx-13 mg-b-0"><strong class="tx-medium">Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
+                    <span class="tx-12">October 03, 2017 8:45am</span>
+                  </div>
+                </div><!-- media -->
+              </a>
+              <!-- loop ends here -->
+              <a href="#" class="media-list-link read">
+                <div class="media pd-x-20 pd-y-15">
+                  <img src="../img/img9.jpg" class="wd-40 rounded-circle" alt="">
+                  <div class="media-body">
+                    <p class="tx-13 mg-b-0"><strong class="tx-medium">Mellisa Brown</strong> appreciated your work <strong class="tx-medium">The Social Network</strong></p>
+                    <span class="tx-12">October 02, 2017 12:44am</span>
+                  </div>
+                </div><!-- media -->
+              </a>
+              <a href="#" class="media-list-link read">
+                <div class="media pd-x-20 pd-y-15">
+                  <img src="../img/img10.jpg" class="wd-40 rounded-circle" alt="">
+                  <div class="media-body">
+                    <p class="tx-13 mg-b-0">20+ new items added are for sale in your <strong class="tx-medium">Sale Group</strong></p>
+                    <span class="tx-12">October 01, 2017 10:20pm</span>
+                  </div>
+                </div><!-- media -->
+              </a>
+              <a href="#" class="media-list-link read">
+                <div class="media pd-x-20 pd-y-15">
+                  <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+                  <div class="media-body">
+                    <p class="tx-13 mg-b-0"><strong class="tx-medium">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium">Ronnie Mara</strong></p>
+                    <span class="tx-12">October 01, 2017 6:08pm</span>
+                  </div>
+                </div><!-- media -->
+              </a>
+              <div class="media-list-footer">
+                <a href="#" class="tx-12"><i class="fa fa-angle-down mg-r-5"></i> Show All Notifications</a>
+              </div>
+            </div><!-- media-list -->
+          </div><!-- dropdown-menu -->
+        </div><!-- dropdown -->
+        <div class="dropdown dropdown-profile">
+          <a href="#" class="nav-link nav-link-profile" data-toggle="dropdown">
+            <img src="../img/img13.jpg" class="wd-32 rounded-circle" alt="">
+            <span class="logged-name"><span class="hidden-xs-down">Prince Alfred Gyan</span> <i class="fa fa-angle-down mg-l-3"></i></span>
+          </a>
+          <div class="dropdown-menu wd-200">
+            <ul class="list-unstyled user-profile-nav">
+              <li><a href="#"><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
+              <li><a href="#"><i class="icon ion-ios-gear-outline"></i> Settings</a></li>
+              <li><a href="#"><i class="icon ion-ios-download-outline"></i> Downloads</a></li>
+              <li><a href="#"><i class="icon ion-ios-star-outline"></i> Favorites</a></li>
+              <li><a href="#"><i class="icon ion-ios-folder-outline"></i> Collections</a></li>
+              <li><a href="#"><i class="icon ion-power"></i> Sign Out</a></li>
+            </ul>
+          </div><!-- dropdown-menu -->
+        </div><!-- dropdown -->
+      </div><!-- kt-headpanel-right -->
+    </div><!-- kt-headpanel -->
+    <div class="kt-breadcrumb">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" href="index.html">PrecisionFarming</a>
+        <span class="breadcrumb-item active">Dashboard</span>
+      </nav>
+    </div><!-- kt-breadcrumb -->
+
+    <!-- ##### MAIN PANEL ##### -->
+    <div class="kt-mainpanel">
+      <div class="kt-pagetitle">
+        <h5>Soil Temperature Panel</h5>
+      </div><!-- kt-pagetitle -->
+
+      <div class="kt-pagebody">
+
+        <div class="row row-sm">
+          <div class="col-xl-6">
+            <div class="card pd-20 pd-sm-40">
+              <h6 class="card-body-title">Daily Chart</h6>
+              <p class="mg-b-20 mg-sm-b-30"></p>
+              <canvas id="chart1" height="300"></canvas>
+              <h6 style="text-align: center;" >Hours</h6>
+            </div><!-- card -->
+          </div><!-- col-6 -->
+          <div class="col-xl-6 mg-t-25 mg-xl-t-0">
+            <div class="card pd-20 pd-sm-40">
+              <h6 class="card-body-title">Weekly Chart</h6>
+              <p class="mg-b-20 mg-sm-b-30"></p>
+              <canvas id="chart2" height="300"></canvas>
+              <h6 style="text-align: center;" >Days</h6>
+            </div><!-- card -->
+          </div><!-- col-6 -->
+        </div><!-- row -->
+
+
+        <div class="row row-sm mg-t-50">
+          <div class="col-xl-6">
+            <div class="card pd-20 pd-sm-40">
+              <h6 class="card-body-title">Monthly Chart</h6>
+              <p class="mg-b-20 mg-sm-b-30"></p>
+              <canvas id="chart3" height="300"></canvas>
+              <h6 style="text-align: center;" >Weeks</h6>              
+            </div><!-- card -->
+          </div><!-- col-6 -->
+          <div class="col-xl-6 mg-t-25 mg-xl-t-0">
+            <div class="card pd-20 pd-sm-40">
+              <h6 class="card-body-title">Yearly  Chart</h6>
+              <p class="mg-b-20 mg-sm-b-30"></p>
+              <canvas id="chart4" height="300"></canvas>
+              <h6 style="text-align: center;" >Months</h6>
+            </div><!-- card -->
+          </div><!-- col-6 -->
+        </div><!-- row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div><!-- kt-pagebody -->
+      <div class="kt-footer">
+<span>Copyright ©. All Rights Reserved. IoT Agric Presicion-Farming Dashboard.</span>        <span>Created by: Prince Alfred Gyan & Dennis Effa Amponsah</span>
+      </div><!-- kt-footer -->
+    </div><!-- kt-mainpanel -->
+
+ 
+     <script src="../lib/jquery/jquery.js"></script>
+    <script src="../lib/popper.js/popper.js"></script>
+    <script src="../lib/bootstrap/bootstrap.js"></script>
+    <script src="../lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="../lib/moment/moment.js"></script>
+    <script src="../lib/highlightjs/highlight.pack.js"></script>
+    <script src="../lib/chart.js/Chart.js"></script>
+
+    <script src="../js/magen-iot-admin.js"></script>
+    <script src="../js/chart.chartjs2.js"></script>
+  </body>
+
+<!-- Mirrored from qbgrow.com/magen/iot-admin/app/chart-chartjs.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Nov 2018 14:11:27 GMT -->
+</html>
