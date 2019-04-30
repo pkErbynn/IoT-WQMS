@@ -28,24 +28,24 @@ import datetime
 
 # monthly processing 
 t = ('2019-03-18 17:18:42', 10.0)
-# # print( t[0][10:16] )
+print( t[0][:7] )
 
-s = t[0][:10]
-print(s)
-sp = s.split("-")
+# s = t[0][:10]
+# print(s)
+# sp = s.split("-")
 
-year = int(sp[0])
-month = int(sp[1])
-day = int(sp[2])
+# year = int(sp[0])
+# month = int(sp[1])
+# day = int(sp[2])
 
-# def month_from_full_date(year, month, day):
-#     time = datetime.datetime(year, month, day)
-#     return (time.strftime("%y"))
+# # def month_from_full_date(year, month, day):
+# #     time = datetime.datetime(year, month, day)
+# #     return (time.strftime("%y"))
 
-# d = month_from_full_date(year, month, day)
-# print(d)
+# # d = month_from_full_date(year, month, day)
+# # print(d)
 
-print(year)
+# print(year)
 
 # mydate = datetime.datetime.now()
 # print(mydate)

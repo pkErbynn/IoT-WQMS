@@ -93,7 +93,7 @@ def temperature(x):
 
     if x == '1h':
         name = '1 Hour'
-        label = 'Minutes'
+        label = 'Minutes : Seconds'
     
         cursor.execute(" SELECT time,temperature FROM iot_wqms_table ORDER BY id DESC LIMIT 10") 
         data = cursor.fetchall()
@@ -107,7 +107,7 @@ def temperature(x):
             print(datum)
             datum_float = float(datum[1])
             temp.append(datum_float)
-            t = str(datum[0][14:16])
+            t = str(datum[0][14:])
             time.append(t)
         
         print("time...." , time)
@@ -118,7 +118,7 @@ def temperature(x):
     
     if x == '1d':
         name = '1 Day'
-        label = 'Hours'
+        label = 'Hours : Minutes'
     
         cursor.execute(" SELECT time,temperature FROM iot_wqms_table ORDER BY id DESC LIMIT 1440") 
         data = cursor.fetchall()
@@ -130,7 +130,7 @@ def temperature(x):
             print(datum)
             datum_float = float(datum[1])
             temp.append(datum_float)
-            t = str(datum[0][10:19])
+            t = str(datum[0][11:16])
             time.append(t)
         
         print("time...." , time)
@@ -183,7 +183,7 @@ def temperature(x):
 
     if x == '1m':
         name = '1 Month'
-        label = 'Weeks'
+        label = 'Months-Dates'
 
         # fetching data from database.....change number of data to fetch
         cursor.execute(" SELECT time,temperature FROM iot_wqms_table ORDER BY id DESC LIMIT 1440") 
@@ -206,15 +206,16 @@ def temperature(x):
             temp.append(datum_float)        # pushing to temp list
 
             # string month processing from full date timestamp
-            tm = str(datum[0][:10])
-            tm_split = tm.split("-")
-            year = int(tm_split[0])
-            month = int(tm_split[1])
-            day = int(tm_split[2])
+            tm = str(datum[0][5:10])
+            # tm_split = tm.split("-")
+            # year = int(tm_split[0])
+            # month = int(tm_split[1])
+            # day = int(tm_split[2])
 
             # using full_date to day_string function defined 
-            current_month = string_month_from_full_date(year, month, day)
-            time.append(current_month)
+            # current_month = string_month_from_full_date(year, month, day)
+            # time.append(current_month)
+            time.append(tm)
             
         
         print("time...." , time)
@@ -260,11 +261,51 @@ def temperature(x):
             time.append(current_month)
             # time.append(year)
             
-        
         print("time...." , time)
         print("temp....", temp)
 
-#     return render_template('atm_temp.html', temp=temp, time=str(time), name=name, label=label)
+
+    # all data processing
+
+    if x == 'all':
+        name = 'All'
+        label = 'Year : Month'
+
+        # fetching data from database.....change number of data to fetch
+        cursor.execute(" SELECT time,temperature FROM iot_wqms_table ORDER BY id DESC LIMIT 1440") 
+        data = cursor.fetchall()
+        
+         # retreiving month string from timestamp of database to get sth like January, Febuary
+        def string_month_from_full_date(year, month, day):
+            time = datetime.datetime(year, month, day)
+            return (time.strftime("%Y")) # %B for fullname
+
+
+        # emptying time and temperature container list
+        del time[:]
+        del temp[:]
+
+        # retrieving monthly time and temp from database data
+        for datum in data:
+            # collecting temperature
+            print(datum)
+            datum_float = float(datum[1])   # temp data in float
+            temp.append(datum_float)        # pushing to temp list
+
+            # string month processing from full date timestamp
+            tm = str(datum[0][:7])
+            # tm_split = tm.split("-")
+            # year = int(tm_split[0])
+            # month = int(tm_split[1])
+            # day = int(tm_split[2])
+
+            # using full_date to day_string function defined 
+            # current_month = string_month_from_full_date(year, month, day)
+            # time.append(current_month)
+            time.append(tm)
+            
+        print("time...." , time)
+        print("temp....", temp)
     return render_template("tempChart.html", temp=temp, time=time, label=label, name=name)
 
 
