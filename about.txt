@@ -1,1 +1,9 @@
 Turbidity is the cloudiness or haziness of a fluid caused by large numbers of individual particles that are generally invisible to the naked eye, similar to smoke in air. The measurement of turbidity is a key test of water quality.
+
+ (or haze) is also applied to transparent solids such as glass or plastic. In plastic production, haze is defined as the percentage of light that is deflected more than 2.5° from the incoming light direction.
+
+ WQMS controls sensors placed in water
+ ...collects anolgue data into digital format
+ ...store in sqlite database
+ ...retrieved and processed
+ ...to be rendered in a simple web interface on the front
