@@ -35,14 +35,31 @@
         .pkfloat:focus,
         .pkfloat:active {
             box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
-            -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+            -webkit-transform: scale(1.0);
+            transform: scale(1.01);
         }
+
+        #hori_line {
+            margin-left: 10%;
+            margin-right: 10%;
+            width: 80%;
+            display: block;
+            border-top: 1.5px solid #ccc;
+            margin: 1em 4;
+        }
+
         #tableRaised {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-}
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .table .bg-primary th {
+            color: rgb(236, 236, 236);
+            background-color: #006cdf;
+            border-color: #ced2d6;
+
+        }
     </style>
 
 
@@ -76,23 +93,23 @@
         </div>
     </header>
 
-    <div class="bg-info sidebar text-light pt-3" id='transparen' style="background-color: #15324f !important">
+    <!-- slide bar -->
+    <div class="bg-info sidebar text-light pt-3" id='transparent' style="background-color: #15324f !important">
         <div class="container" style="background-color: #15324f !important">
-            <a href="/index" class="btn btn-info btn-block sBarBtn border-bottom ">Home</a>
-            <a href="/dashboard" class="btn btn-info btn-block sBarBtn border-bottom  active">Dashboard</a>
-            <a href="/chart" class="btn btn-info btn-block sBarBtn border-bottom ">Charts</a>
+            <a href="/index" class="btn btn-block sBarBtn border-bottom " style="color:white;">Home</a>
+            <a href="/dashboard" class="btn btn-block sBarBtn border-bottom  active" style="color:white;">Dashboard</a>
+            <!-- <a href="/chart" class="btn btn-info btn-block sBarBtn border-bottom ">Charts</a> -->
 
-            <a href="/tempChart" class="btn btn-info btn-block sBarBtn border-bottom ">Temperature</a>
-            <a href="/turbChart" class="btn btn-info btn-block sBarBtn border-bottom ">Turbidity</a>
-            <a href="/phChart" class="btn btn-info btn-block sBarBtn border-bottom ">pH</a>
-            <a href="/waterlevelChart" class="btn btn-info btn-block sBarBtn border-bottom ">Water Level</a>
-            <a href="/index" class="btn btn-info btn-block sBarBtn">Logout</a>
+            <a href="/tempChart/1h" class="btn btn-block sBarBtn border-bottom" style="color:white;">Temperature</a>
+            <a href="/turbChart" class="btn btn-block sBarBtn border-bottom" style="color:white;">Turbidity</a>
+            <a href="/phChart" class="btn btn-block sBarBtn border-bottom " style="color:white;">pH</a>
+            <a href="/waterlevelChart" class="btn btn-block sBarBtn border-bottom " style="color:white;">Water Level</a>
+            <a href="/index" class="btn btn-block sBarBtn" style="color:white;">Logout</a>
         </div>
-
-    </div>
-
+    </div> 
 
 
+    <!-- breadcrumb -->
     <div class="container mt-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -102,72 +119,94 @@
 
         </nav>
     </div>
+
+    <!-- data card -->
     <div class="container my-3">
         <div class="row text-center">
+
+            <!-- temperature -->
             <div class="col-6 col-sm-3">
-                <a href="/tempChart">
+                <a href="/tempChart/1h">
                     <div class="card custon-shadow mt-3 pkfloat">
                         <h5 class="card-title border-bottom p-1 text-light bg-primary rounded" style="">TEMPERATURE</h5>
-                        <span class="card-text">
+                        <span class="card-text"><br>
                             <span class="h2">
                                 <!-- {% for datum in data  %}
                                             datum[0]
-                                        {% endfor %} -->20
+                                        {% endfor %} -->{{last_temp_data}}
                             </span>
                             <span class="text-primary">°C</span>
                             <img src="/static/images/thermometer.svg" width="55"
                                 style="margin-left: 30px; margin-bottom: 15px">
-                            </<span>
+                        </span>
+                        <hr id="hori_line">
+                        <p class="tx-12"><span class="tx-success">{{percentage_temp_change}}% ({{temp_change}})</span> past hour</p>
+                        <!-- <p><span>HourlyAverage : </span> {{average_temp_hour}}</p> -->
                     </div>
                 </a>
             </div>
+
+            <!-- turbidy card -->
             <div class="col-6 col-sm-3">
                 <a href="/turbChart">
                     <div class="card custon-shadow mt-3 pkfloat">
                         <h5 class="card-title border-bottom p-1 text-light bg-primary rounded">TURBIDITY</h5>
-                        <span class="card-text">
+                        <span class="card-text"><br>
                             <span class="h2">150 </span>
                             <span class="text-primary">NTU</span>
                             <img src="/static/images/turbidity.svg" width="55"
                                 style="margin-left: 30px; margin-bottom: 15px ">
                         </span>
-
+                        <hr id="hori_line">
+                        <p class="tx-12"><span class="tx-success">5.6% (25)</span> past hour</p>
                     </div>
                 </a>
             </div>
+
+            <!-- ph card -->
             <div class="col-6 col-sm-3">
                 <a href="/phChart">
                     <div class="card custon-shadow mt-3 pkfloat">
                         <h5 class="card-title border-bottom p-1 text-light bg-primary rounded">pH</h5>
-                        <span class="card-text">
+                        <span class="card-text"><br>
                             <span class="h2">7 </span>
                             <img src="/static/images/ph.svg" width="55" style="margin-left: 30px; margin-bottom: 15px ">
                         </span>
+                        <hr id="hori_line">
+                        <p class="tx-12"><span class="tx-success">20% (46)</span> past hour</p>
                     </div>
                 </a>
             </div>
+
+            <!-- water level card -->
             <div class="col-6 col-sm-3">
                 <a href="/waterlevelChart">
                     <div class="card custon-shadow mt-3 pkfloat">
                         <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">H<sub>2</sub>O Level</h6>
-                        <span class="card-text">
+                        <span class="card-text"><br>
                             <span class="h2">200 </span>
                             <span class="text-primary">cm</span>
                             <img src="/static/images/watermeter.png" width="55"
                                 style="margin-left: 30px; margin-bottom: 15px ">
-                            </s>
+                        </span>
+                        <hr id="hori_line">
+                        <p class="tx-12"><span class="tx-success">-3% (-30)</span> past hour</p>
                     </div>
                 </a>
             </div>
+
         </div>
     </div><br><br>
 
-    <div class="container table-hover table-striped " id="tableRaised" style="height: 400px; overflow-y: scroll">
-    <!-- <div class="container table-hover" id="tableRaised"> -->
-        
-            <table class="table">
-                    <caption>Data Reading</caption>
-            <thead class="thead-dark">
+
+    <!-- table data readings -->
+    <!-- <div class="container table-hover table-striped " id="tableRaised" style="height: 400px; overflow-y: scroll"> -->
+    <div class="container table-responsive " id="tableRaised">
+        <!-- <div class="container table-hover" id="tableRaised"> -->
+
+        <table class="table table-striped table-hover col-sm-12" style="width: auto">
+            <caption>Data Reading</caption>
+            <thead class="bg-primary ">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Date & Time</th>
@@ -188,12 +227,15 @@
                     <td>{{ parameter[5] }}</td>
                 </tr>
                 {% endfor %}
+
             </tbody>
         </table>
+    </div>
+
     </div><br><br>
 
-  
-        
+
+
 
 
 
@@ -245,6 +287,7 @@
     <!-- </div> -->
 
 
+    <!-- footer -->
     <footer>
         <div class="container-fluid p-3 text-center text-light bg-info" style="background-color: #15324f !important">
             <div class="container">

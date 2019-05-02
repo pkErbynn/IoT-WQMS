@@ -39,19 +39,19 @@
         </div>
     </header>
 
-    <div class="bg-info sidebar text-light pt-3" id='transparent'>
-        <div class="container">
-            <a href="/index" class="btn btn-info btn-block sBarBtn border-bottom ">Home</a>
-            <a href="/dashboard" class="btn btn-info btn-block sBarBtn border-bottom  active">Dashboard</a>
-            <a href="/chart" class="btn btn-info btn-block sBarBtn border-bottom ">Charts</a>
-            <a href="/tempChart" class="btn btn-info btn-block sBarBtn border-bottom ">Temperature</a>
-            <a href="/turbChart" class="btn btn-info btn-block sBarBtn border-bottom ">Turbidity</a>
-            <a href="/phChart" class="btn btn-info btn-block sBarBtn border-bottom ">pH</a>
-            <a href="/waterlevelChart" class="btn btn-info btn-block sBarBtn border-bottom ">Water Level</a>
-            <a href="/index" class="btn btn-info btn-block sBarBtn">Logout</a>
+    <div class="bg-info sidebar text-light pt-3" id='transparent' style="background-color: #15324f !important">
+        <div class="container" style="background-color: #15324f !important">
+            <a href="/index" class="btn btn-block sBarBtn border-bottom " style="color:white;">Home</a>
+            <a href="/dashboard" class="btn btn-block sBarBtn border-bottom  active" style="color:white;">Dashboard</a>
+            <a href="/tempChart/1h" class="btn btn-block sBarBtn border-bottom" style="color:white;">Temperature</a>
+            <a href="/turbChart" class="btn btn-block sBarBtn border-bottom" style="color:white;">Turbidity</a>
+            <a href="/phChart" class="btn btn-block sBarBtn border-bottom " style="color:white;">pH</a>
+            <a href="/waterlevelChart" class="btn btn-block sBarBtn border-bottom " style="color:white;">Water Level</a>
+            <a href="/index" class="btn btn-block sBarBtn" style="color:white;">Logout</a>
         </div>
     </div>
 
+    <!-- breadcrumb -->
     <div class="container mt-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -84,19 +84,26 @@
         </nav>
     </div>
 
+    <!-- temperature chart -->
     <section>
         <div class="container m-auto text-center text-muted">
             <div class="card shadow p-3 my-3 chartsCard" style="height: auto">
-                <h4 class="card-title">Temperature Chart</h4><br>
+                <h4 class="card-title">
+                    <span style="font-weight: bold">Temperature</span> (°C) <small> - <i>{{name}}</i></small>
+                </h4>
+                <br>
                 <canvas id="temperature" name="temp" class="resize" height="400px"></canvas><br>
-                <h7>{{label}}</<h7>
-
+                <h7>{{label}}</<h7><br>
+                    <hr style="margin-left: 10%; margin-right: 10%; width: 80%; display: block; border-top: 1.5px solid #ccc; margin: 1em 4;">
+                    <p>
+                        <pre>  Average : {{mean}}    |    Min Temp : {{min_temp}}    |    Max Temp : {{max_temp}}   |   Range : {{range_temp}}</pre>
+                    </p>
             </div><br>
         </div>
     </section>
 
 
-
+    <!-- footer -->
     <footer style="background-color: #15324f !important">
         <div class="container-fluid p-3 text-center text-light bg-info" style="background-color: #15324f !important;">
             <div class="container">
