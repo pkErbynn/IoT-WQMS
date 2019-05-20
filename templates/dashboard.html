@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Aqua</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="5">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
 
@@ -101,13 +102,12 @@
             <!-- <a href="/chart" class="btn btn-info btn-block sBarBtn border-bottom ">Charts</a> -->
 
             <a href="/tempChart/1h" class="btn btn-block sBarBtn border-bottom" style="color:white;">Temperature</a>
-            <a href="/turbChart" class="btn btn-block sBarBtn border-bottom" style="color:white;">Turbidity</a>
-            <a href="/phChart" class="btn btn-block sBarBtn border-bottom " style="color:white;">pH</a>
-            <a href="/waterlevelChart" class="btn btn-block sBarBtn border-bottom " style="color:white;">Water Level</a>
+            <a href="/turbChart/1h" class="btn btn-block sBarBtn border-bottom" style="color:white;">Turbidity</a>
+            <a href="/phChart/1h" class="btn btn-block sBarBtn border-bottom " style="color:white;">pH</a>
+            <a href="/waterlevelChart/1h" class="btn btn-block sBarBtn border-bottom " style="color:white;">Water Level</a>
             <a href="/index" class="btn btn-block sBarBtn" style="color:white;">Logout</a>
         </div>
     </div> 
-
 
     <!-- breadcrumb -->
     <div class="container mt-4">
@@ -123,7 +123,6 @@
     <!-- data card -->
     <div class="container my-3">
         <div class="row text-center">
-
             <!-- temperature -->
             <div class="col-6 col-sm-3">
                 <a href="/tempChart/1h">
@@ -148,49 +147,49 @@
 
             <!-- turbidy card -->
             <div class="col-6 col-sm-3">
-                <a href="/turbChart">
+                <a href="/turbChart/1h">
                     <div class="card custon-shadow mt-3 pkfloat">
                         <h5 class="card-title border-bottom p-1 text-light bg-primary rounded">TURBIDITY</h5>
                         <span class="card-text"><br>
-                            <span class="h2">150 </span>
+                            <span class="h2">{{last_turbidity_data}}</span>
                             <span class="text-primary">NTU</span>
                             <img src="/static/images/turbidity.svg" width="55"
                                 style="margin-left: 30px; margin-bottom: 15px ">
                         </span>
                         <hr id="hori_line">
-                        <p class="tx-12"><span class="tx-success">5.6% (25)</span> past hour</p>
+                        <p class="tx-12"><span class="tx-success">{{percentage_turbidity_change}}% ({{turbidity_change}})</span> past hour</p>
                     </div>
                 </a>
             </div>
 
             <!-- ph card -->
             <div class="col-6 col-sm-3">
-                <a href="/phChart">
+                <a href="/phChart/1h">
                     <div class="card custon-shadow mt-3 pkfloat">
                         <h5 class="card-title border-bottom p-1 text-light bg-primary rounded">pH</h5>
                         <span class="card-text"><br>
-                            <span class="h2">7 </span>
+                            <span class="h2">{{last_ph_data}} </span>
                             <img src="/static/images/ph.svg" width="55" style="margin-left: 30px; margin-bottom: 15px ">
                         </span>
                         <hr id="hori_line">
-                        <p class="tx-12"><span class="tx-success">20% (46)</span> past hour</p>
+                        <p class="tx-12"><span class="tx-success">{{percentage_ph_change}}% ({{ph_change}})</span> past hour</p>
                     </div>
                 </a>
             </div>
 
             <!-- water level card -->
             <div class="col-6 col-sm-3">
-                <a href="/waterlevelChart">
+                <a href="/waterlevelChart/1h">
                     <div class="card custon-shadow mt-3 pkfloat">
                         <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">H<sub>2</sub>O Level</h6>
                         <span class="card-text"><br>
-                            <span class="h2">200 </span>
+                            <span class="h2">{{last_waterlevel_data}}</span>
                             <span class="text-primary">cm</span>
                             <img src="/static/images/watermeter.png" width="55"
                                 style="margin-left: 30px; margin-bottom: 15px ">
                         </span>
                         <hr id="hori_line">
-                        <p class="tx-12"><span class="tx-success">-3% (-30)</span> past hour</p>
+                        <p class="tx-12"><span class="tx-success">{{percentage_waterlevel_change}}% ({{waterlevel_change}})</span> past hour</p>
                     </div>
                 </a>
             </div>

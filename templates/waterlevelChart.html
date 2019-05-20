@@ -34,56 +34,59 @@
                     <p class=" border-bottom border-secondary iconBtn"></p>
                     <p class=" border-bottom border-secondary iconBtn"></p>
                 </button>
-
             </div>
         </div>
     </header>
 
+    <!-- side bar -->
     <div class="bg-info sidebar text-light pt-3" id='transparent'>
         <div class="container">
             <a href="/index" class="btn btn-info btn-block sBarBtn border-bottom ">Home</a>
             <a href="/dashboard" class="btn btn-info btn-block sBarBtn border-bottom  active">Dashboard</a>
-            <a href="/chart" class="btn btn-info btn-block sBarBtn border-bottom ">Charts</a>
-            <a href="/tempChart" class="btn btn-info btn-block sBarBtn border-bottom ">Temperature</a>
-            <a href="/turbChart" class="btn btn-info btn-block sBarBtn border-bottom ">Turbidity</a>
-            <a href="/phChart" class="btn btn-info btn-block sBarBtn border-bottom ">pH</a>
-            <a href="/waterlevelChart" class="btn btn-info btn-block sBarBtn border-bottom ">Water Level</a>
+            <a href="/tempChart/1h" class="btn btn-info btn-block sBarBtn border-bottom ">Temperature</a>
+            <a href="/turbChart/1h" class="btn btn-info btn-block sBarBtn border-bottom ">Turbidity</a>
+            <a href="/phChart/1h" class="btn btn-info btn-block sBarBtn border-bottom ">pH</a>
+            <a href="/waterlevelChart/1h" class="btn btn-info btn-block sBarBtn border-bottom ">Water Level</a>
             <a href="/index" class="btn btn-info btn-block sBarBtn">Logout</a>
         </div>
     </div>
 
+    <!-- breadcrumb -->
     <div class="container mt-4">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="/dashboard">Dashboard</a>
-                </li>
-                <li class="breadcrumb-item active">WaterLevel</li>
-            </ol>
-
-        </nav>
-    </div>
-
-
-
-
-    <section>
-        <div class="container m-auto text-center text-muted">
-
-
-            <div class="card shadow p-3 my-3 chartsCard">
-                <h3 class="card-title">Water Level (cm)</h3>
-                <canvas id="water" class="resize" height="400px"></canvas>
-                <br>
-            </div><br>
-
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Water-level</li>
+                    <!-- breadcrumb linkage -->
+                    <li class="breadcrumb-item active"><a href="/waterlevelChart/1h">Hourly</a></li>
+                    <li class="breadcrumb-item active"><a href="/waterlevelChart/1d">Daily</a></li>
+                    <li class="breadcrumb-item active"><a href="/waterlevelChart/1w">Weekly</a></li>
+                    <li class="breadcrumb-item active"><a href="/waterlevelChart/1m">Monthly</a></li>
+                    <li class="breadcrumb-item active"><a href="/waterlevelChart/1y">Yearly</a></li>
+                    <li class="breadcrumb-item active"><a href="/waterlevelChart/all">All</a></li>
+                </ol>
+            </nav>
         </div>
 
+    <!-- waterlevel chart -->
+    <section>
+            <div class="container m-auto text-center text-muted">
+                <div class="card shadow p-3 my-3 chartsCard" style="height: auto">
+                    <h4 class="card-title">
+                        <span style="font-weight: bold">waterlevel</span>  
+                        <small> - <i>{{name}}</i></small>
+                    </h4>
+                    <canvas id="waterdepth" name="waterlevel" class="resize" height="400px"></canvas>
+                    <h7>{{label}}</<h7><br><br>
+                    <hr style="margin-left: 10%; margin-right: 10%; width: 80%; display: block; border-top: 1.5px solid #ccc; margin: 1em 4;">
+                    <p>
+                        <pre>  Average : {{average_waterlevel}}    |    Min : {{min_waterlevel}}    |    Max : {{max_waterlevel}}   |   Range : {{range_waterlevel}}</pre>
+                    </p>
+                </div><br>
+            </div>
+        </section>
 
-    </section>
-
-
-
+    <!-- water level -->
     <footer style="background-color: #15324f !important">
         <div class="container-fluid p-3 text-center text-light bg-info" style="background-color: #15324f !important;">
             <div class="container">
@@ -103,8 +106,6 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
 
-
-
     <!-- the chart.min must come first b4 the dataset -->
     <script src="../static/js/Chart.js"></script>
     <!-- <script src="../static/js/charts_dataset.js" ></script> -->
@@ -113,16 +114,21 @@
     <script src="../static/js/main.js"></script>
 
     <script>
-        const waterChart = new Chart(water, {
+        var time = []
+        time = {{ time | safe }}
+        var waterlevel = []
+        waterlevel = {{ waterlevel | safe }}
+
+        const waterChart = new Chart(waterdepth, {
             // The type of chart we want to create
             type: 'line',
             // The data for our dataset
             data: {
-                labels: ["January", "February", "March", "April"],
+                labels: time,
                 datasets: [{
                     label: "Dataset for Water Level ",
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [15, 10, 5, 2],
+                    data: waterlevel,
                     backgroundColor: ['rgba(00, 255, 00, 0.1)',],
                     borderColor: '#4dc9f6',
                     borderWidth: 1.5

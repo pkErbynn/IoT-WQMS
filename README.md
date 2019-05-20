@@ -1,3 +1,5 @@
+josiah nii kortey 38
+
 Turbidity is the cloudiness or haziness of a fluid caused by large numbers of individual particles that are generally invisible to the naked eye, similar to smoke in air. The measurement of turbidity is a key test of water quality.
 
  (or haze) is also applied to transparent solids such as glass or plastic. In plastic production, haze is defined as the percentage of light that is deflected more than 2.5° from the incoming light direction.
@@ -35,3 +37,8 @@ normal parameter ranges for tilapia(fish) production
 ...ph   4-10
 ...water level 5 - 27
 ...turbidity(Nephelometric Turbidity Units or Jackson Turbidity Unit) 0 - 5
+
+
+
+
+['temp : 2', ' turb: 23', ' ph: 5', ' level: 33']

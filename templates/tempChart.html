@@ -45,7 +45,7 @@
             <a href="/dashboard" class="btn btn-block sBarBtn border-bottom  active" style="color:white;">Dashboard</a>
             <a href="/tempChart/1h" class="btn btn-block sBarBtn border-bottom" style="color:white;">Temperature</a>
             <a href="/turbChart" class="btn btn-block sBarBtn border-bottom" style="color:white;">Turbidity</a>
-            <a href="/phChart" class="btn btn-block sBarBtn border-bottom " style="color:white;">pH</a>
+            <a href="/phChart/1h" class="btn btn-block sBarBtn border-bottom " style="color:white;">pH</a>
             <a href="/waterlevelChart" class="btn btn-block sBarBtn border-bottom " style="color:white;">Water Level</a>
             <a href="/index" class="btn btn-block sBarBtn" style="color:white;">Logout</a>
         </div>
@@ -92,7 +92,7 @@
                     <span style="font-weight: bold">Temperature</span> (°C) <small> - <i>{{name}}</i></small>
                 </h4>
                 <br>
-                <canvas id="temperature" name="temp" class="resize" height="400px"></canvas><br>
+                <canvas id="temperature" name="temp" class="resize" height="400px"></canvas>
                 <h7>{{label}}</<h7><br>
                     <hr style="margin-left: 10%; margin-right: 10%; width: 80%; display: block; border-top: 1.5px solid #ccc; margin: 1em 4;">
                     <p>
@@ -119,14 +119,12 @@
 
 
 
-
+    <!-- links -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
-
-
 
     <!-- the chart.min must come first b4 the dataset -->
     <script src="../static/js/Chart.js"></script>

@@ -70,7 +70,14 @@ print(round(pc,2))
 print('min...', min(temp1))
 
 print(temp1[-1])
+l = ['temp : 2', 'turb: 23', 'ph: 5', 'water_level: 33']
 
+
+{
+    "temp":2, 
+}
+
+print( l[1].split(':')[0] )
 # print("mean: ", round(mean, 2))
 
 # print(c,"%")
