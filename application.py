@@ -19,10 +19,7 @@ import time
 import statistics as stat
 app = Flask(__name__)
 
-
-
 # home route
-
 @app.route("/",)
 @app.route("/index")
 def index():
@@ -32,8 +29,6 @@ def index():
 #      items = read_data_from_db()
 #     # items = read_data_from_db()
 #    
-    # return render_template("index.html", todayDate=datetime.date.today(), items=items)
-    
     return render_template("index.html", todayDate=datetime.date.today())
 
 
@@ -44,17 +39,12 @@ def create_data():
     # data = request.get_json()
     data = request.data
     print(".......")
-    print(data)
-    decoded_data = data.decode('utf-8')  # decoding bytes data to string
-    print(decoded_data)
-    print(type(decoded_data))
-
+    # decoding bytes data to string
+    decoded_data = data.decode('utf-8')  
     key = ['temperature', 'turbidity', 'ph', 'water_level']
 
     # data in list
-    sd = decoded_data.split(',')
-    string_value = sd
-    print('over here !', string_value)
+    string_value = decoded_data.split(',')
 
     # dictionary processing
     value = []
@@ -66,10 +56,15 @@ def create_data():
     #merge to dict()
     data = dict(zip(key, value))
     print("zipped")
-    print(data)
+    temp = data['temperature']
+    turb = data['turbidity']
+    ph = data['ph']
+    h2o = data['waterlevel']
+    # if (temp < 20 | temp > 35) |  :
+    #     sendmail()
+
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
-
     try:
         cursor.execute(""" INSERT INTO iot_wqms_table( temperature, turbidity, ph, water_level) 
                          VALUES (?, ?, ?, ?) """,
@@ -252,14 +247,6 @@ def temperature(x):
 
             # string month processing from full date timestamp
             tm = str(datum[0][5:10])
-            # tm_split = tm.split("-")
-            # year = int(tm_split[0])
-            # month = int(tm_split[1])
-            # day = int(tm_split[2])
-
-            # using full_date to day_string function defined 
-            # current_month = string_month_from_full_date(year, month, day)
-            # time.append(current_month)
             time.append(tm)
 
          # analysis
