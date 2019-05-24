@@ -8,8 +8,7 @@ Authors : John Pk Erbynn, Josiah Nii Kortey, Isaac Agyen Duffour
 '''
 
 
-
-from flask import Flask, render_template, flash, redirect, render_template, request, session, abort
+from flask import Flask, render_template, flash, redirect, render_template, request, url_for
 from aquaLite import *
 from flask import jsonify
 import datetime
@@ -17,52 +16,48 @@ import json
 import sqlite3
 import time
 import statistics as stat
+
 app = Flask(__name__)
 
-# home route
-@app.route("/",)
-@app.route("/index")
+# Set the secret_key on the application to something unique and secret.
+app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+
+# home route....landing page
+@app.route("/", methods = ['GET', 'POST'])
+@app.route("/index", methods=["GET", "POST"])
 def index():
-#     # if request.phization and request.phization.username=="username" and request.phization.password=="password":
-#     #     return render_template("dashboard.html")
-#     # return render_template("index.html")
-#      items = read_data_from_db()
-#     # items = read_data_from_db()
-#    
-    return render_template("index.html", todayDate=datetime.date.today())
+    dash = False
+    if request.method == 'POST':
+        username = request.form['username']
+        passwd = request.form['password']
+        if username == 'admin' and passwd == 'wqms':
+            dash = True
+            flash('You have successfully logged in !')
+            return redirect(url_for('dashboard'))   # redirect( /dashboard )
+        else:
+            flash('Login Unsuccessful. Please check username and password',)
+    return render_template("index.html", todayDate=datetime.date.today(), dash=dash,)
 
 
 # posting data to database
 
 @app.route("/postData", methods=["POST"])
 def create_data():
-    # data = request.get_json()
+    print(">>> posting data ....")
     data = request.data
-    print(".......")
     # decoding bytes data to string
     decoded_data = data.decode('utf-8')  
     key = ['temperature', 'turbidity', 'ph', 'water_level']
-
     # data in list
     string_value = decoded_data.split(',')
-
     # dictionary processing
     value = []
     for v in string_value:
         v = float(v)
         value.append(v)
     print(value)
-    
     #merge to dict()
     data = dict(zip(key, value))
-    print("zipped")
-    temp = data['temperature']
-    turb = data['turbidity']
-    ph = data['ph']
-    h2o = data['waterlevel']
-    # if (temp < 20 | temp > 35) |  :
-    #     sendmail()
-
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
     try:
@@ -70,27 +65,11 @@ def create_data():
                          VALUES (?, ?, ?, ?) """,
                    (data["temperature"], data["turbidity"], data["ph"], data["water_level"]))
         con.commit()
-        print("......data posted successfully")
+        print("...data posted SUCCESSFULLY")
     except:
-        print('Posting data UNSUCCESSFULL')
+        print('...posting data FAILED')
    
     return jsonify({ "Status": "Data posted successfully"})
-
-
-
-# @app.route("/dashboard.html", methods=['POST'])
-# def do_admin_login():
-#     if request.form['password'] == 'password' and request.form['username'] == 'admin':
-#         session['logged_in'] = True
-#     else:
-#         flash('wrong password!')
-#     return render_template("dashboard.html")
-
-
-@app.route("/chart")
-def chart():
-    return render_template("chart.html")
-
 
 
 # empty list to be used for all parameter route
@@ -108,7 +87,7 @@ range_temp = 0
 
 @app.route("/tempChart/<x>")
 def temperature(x):
-
+    print(">>> temperature running ...")
     # connecting to datebase
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
@@ -163,10 +142,6 @@ def temperature(x):
             t = str(datum[0][11:16])
             time.append(t)
         
-        print("time...." , time)
-        print("temp....", temp)
-        print("length : ",len(temp))
-
         # analysis
         mean_temp = stat.mean(temp)
         average_temp = round(mean_temp, 2)
@@ -295,9 +270,6 @@ def temperature(x):
             time.append(current_month)
             # time.append(year)
             
-        print("time...." , time)
-        print("temp....", temp)
-
          # analysis
         mean_temp = stat.mean(temp)
         average_temp = round(mean_temp, 2)
@@ -310,19 +282,12 @@ def temperature(x):
 
     if x == 'all':
         name = 'All'
-        # label = 'Year-Month'
+        label = 'Time'
 
         # fetching data from database.....change number of data to fetch
         # cursor.execute(" SELECT time,temperature FROM iot_wqms_table ORDER BY id DESC LIMIT 1440") 
         cursor.execute(" SELECT time,temperature FROM ( SELECT * from iot_wqms_table ORDER BY id DESC ) order by id asc") 
-        
         data = cursor.fetchall()
-        
-        #  # retreiving month string from timestamp of database to get sth like January, Febuary
-        # def string_month_from_full_date(year, month, day):
-        #     time = datetime.datetime(year, month, day)
-        #     return (time.strftime("%Y")) # %B for fullname
-
 
         # emptying time and temperature container list
         del time[:]
@@ -334,22 +299,10 @@ def temperature(x):
             print(datum)
             datum_float = float(datum[1])   # temp data in float
             temp.append(datum_float)        # pushing to temp list
-
             # string month processing from full date timestamp
             tm = str(datum[0][:7])
-            # tm_split = tm.split("-")
-            # year = int(tm_split[0])
-            # month = int(tm_split[1])
-            # day = int(tm_split[2])
-
-            # using full_date to day_string function defined 
-            # current_month = string_month_from_full_date(year, month, day)
-            # time.append(current_month)
             time.append(tm)
             
-        print("time...." , time)
-        print("temp....", temp)
-
          # analysis
         mean_temp = stat.mean(temp)
         average_temp = round(mean_temp, 2)
@@ -357,12 +310,12 @@ def temperature(x):
         max_temp = round(max(temp), 2)
         range_temp = max_temp - min_temp
 
-
     return render_template("tempChart.html", temp=temp, time=time, label=label, name=name, mean=average_temp, max_temp=max_temp, min_temp=min_temp, range_temp=range_temp)
 
 
 @app.route("/phChart/<x>")
 def powerOfHydrogen(x):
+    print(">>> ph running ...")
     # connecting to datebase
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
@@ -559,7 +512,6 @@ def powerOfHydrogen(x):
         # emptying 
         del time[:]
         del ph[:]
-
         # retrieving monthly time and ph to emptied list
         for datum in data:
             # collecting temperature
@@ -581,6 +533,7 @@ def powerOfHydrogen(x):
 
 @app.route("/turbChart/<x>")
 def turb(x):
+    print(">>> turbidity running ...")
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
     if x == '1h':
@@ -609,11 +562,13 @@ def turb(x):
         data = cursor.fetchall()
         del time[:]
         del turbidity[:]
+        # appending data to emptied list
         for datum in data:
             datum_float = float(datum[1])
             turbidity.append(datum_float)
             t = str(datum[0][11:16])
             time.append(t)
+        # to 2 decimal places
         average_turbidity = round( stat.mean(turbidity) , 2)
         min_turbidity = round(min(turbidity), 2)
         max_turbidity = round(max(turbidity), 2)
@@ -710,6 +665,7 @@ def turb(x):
 
 @app.route("/waterlevelChart/<x>")
 def waterdepth(x):
+    print(">>> waterlevel running ...")
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
     if x == '1h':
@@ -838,6 +794,7 @@ def waterdepth(x):
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
+    print(">>> dashboard running ...")
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
 
@@ -845,15 +802,14 @@ def dashboard():
     cursor.execute(" SELECT * FROM iot_wqms_table ORDER BY id DESC LIMIT 120") 
     data = cursor.fetchall()
     data = list(data)
-    for d in data:
-        print(d)
+
+    print(".........Page refreshed at", datetime.datetime.now())
 
     # data collector
     temp_data = []
     turbidity_data = []
     ph_data = []
     waterlevel_data = []
-    
     # collecting individual data to collectors
     for row in data:
         temp_data.append(row[2])   
@@ -861,52 +817,52 @@ def dashboard():
         ph_data.append(row[4])
         waterlevel_data.append(row[5])
 
-    # last value data
+    # last value added to database...current data recorded 
     last_temp_data = temp_data[0]
     last_turbidity_data = turbidity_data[0]
     last_ph_data = ph_data[0]
     last_waterlevel_data = waterlevel_data[0]
-    print('current temp', last_temp_data)
-    print('current turb', last_turbidity_data)
-    print('current ph', last_ph_data)
-    print('current waterlevel', last_waterlevel_data)
 
-
-    # percentage increase for temperature computation
-
-    # current current sum
+    # current sum rounded to 2dp
     current_temp_sum = round(sum(temp_data), 2)
     current_turbidity_sum = round(sum(turbidity_data), 2)
     current_ph_sum = round( sum(ph_data), 2 )
     current_waterlevel_sum = round( sum(waterlevel_data), 2)  
-
-    # prev 120 sum....last but one 120 data
+    
+    # fetching 240 data from db to extract the penultimate 120 data
     cursor.execute(" SELECT * FROM iot_wqms_table ORDER BY id DESC LIMIT 240") 
     data = list(cursor.fetchall())
 
+    # collecting individual data
     prev_temp_data = []  # collecting temp values
     prev_turbidity_data = []
     prev_ph_data = []
     prev_waterlevel_data = []
-
     for row in data:
         prev_temp_data.append(row[2])
         prev_turbidity_data.append(row[3])
         prev_ph_data.append(row[4])
         prev_waterlevel_data.append(row[5])
-        
-    prev_temp_data = prev_temp_data[-240:-120]
-    prev_temp_sum = sum(prev_temp_data)
-    prev_turbidity_sum = sum(prev_turbidity_data[-240:-120])
-    prev_ph_sum = sum( prev_ph_data[-240:-120] )
-    prev_waterlevel_sum = sum( prev_waterlevel_data[-240:-120] )
+
+    # slicing for immediate previous 120 data 
+    prev_temp_data = prev_temp_data[120:240]
+    prev_temp_sum = round( sum(prev_temp_data), 2 )
+
+    prev_turbidity_data = prev_turbidity_data[120:240]
+    prev_turbidity_sum = round( sum(prev_turbidity_data), 2 )
+
+    prev_ph_data = prev_ph_data[120:240]
+    prev_ph_sum = round( sum(prev_ph_data), 2 )
+
+    prev_waterlevel_data = prev_waterlevel_data[120:240]
+    prev_waterlevel_sum = round( sum(prev_waterlevel_data), 2 )
 
     # temp, getting the percentage change
     temp_change = prev_temp_sum - current_temp_sum
     temp_change = round(temp_change, 2)
     percentage_temp_change = (temp_change/current_temp_sum) * 100
     percentage_temp_change = round(percentage_temp_change, 1)
-
+    
     # ph, getting the percentage change
     ph_change = prev_ph_sum - current_ph_sum
     ph_change = round(ph_change, 2)
@@ -925,7 +881,6 @@ def dashboard():
     percentage_waterlevel_change = (waterlevel_change/current_waterlevel_sum) * 100
     percentage_waterlevel_change = round(percentage_waterlevel_change,1)
 
-    
     return render_template("dashboard.html", data=data, percentage_temp_change=percentage_temp_change, percentage_ph_change=percentage_ph_change, percentage_turbidity_change=percentage_turbidity_change, percentage_waterlevel_change=percentage_waterlevel_change, temp_change=temp_change, ph_change=ph_change, turbidity_change=turbidity_change, waterlevel_change=waterlevel_change, last_temp_data=last_temp_data, last_ph_data=last_ph_data, last_turbidity_data=last_turbidity_data, last_waterlevel_data=last_waterlevel_data)
 
 
@@ -933,4 +888,4 @@ if __name__ == "__main__":
     app.debug = True
     # using default local ip penultimate 
     # app.run()
-    app.run(debug=True, host='10.10.65.28', port=5050)   # setting your own ip
+    app.run(debug=True, host='10.10.65.249', port=5050)   # setting your own ip

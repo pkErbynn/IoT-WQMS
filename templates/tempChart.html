@@ -41,7 +41,6 @@
 
     <div class="bg-info sidebar text-light pt-3" id='transparent' style="background-color: #15324f !important">
         <div class="container" style="background-color: #15324f !important">
-            <a href="/index" class="btn btn-block sBarBtn border-bottom " style="color:white;">Home</a>
             <a href="/dashboard" class="btn btn-block sBarBtn border-bottom  active" style="color:white;">Dashboard</a>
             <a href="/tempChart/1h" class="btn btn-block sBarBtn border-bottom" style="color:white;">Temperature</a>
             <a href="/turbChart/1h" class="btn btn-block sBarBtn border-bottom" style="color:white;">Turbidity</a>
@@ -129,13 +128,19 @@
             data: {
                 labels: time,
                 datasets: [{
-                    label: "Dataset for all temperature measurements",
-                    borderColor: 'rgb(255, 99, 132)',
+                    label: "Dataset for temperature",
                     data: temp,
                     fill: true,
-                    backgroundColor: ['rgba(00, 255, 00, 0.1)',],
+                    // backgroundColor: 'rgba(00, 255, 00, 0.1)',
+                    backgroundColor: 'rgba(52, 160, 233, 0.7)',
                     borderColor: ['rgba(54, 162, 235, 1)',],
-                    borderWidth: 1.5
+                    borderWidth: 2.2,
+                    pointBorderColor: "rgba(54, 162, 235, 1)",
+                    pointBackgroundColor: "rgba(54, 162, 235, 1)",
+                    pointBorderWidth: 2,
+                    pointRadius: 0.8,
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
                 }]
             },
             // Configuration options go here
@@ -152,7 +157,8 @@
                         hoverRadius: 8,
                     }
 
-                }
+                },
+                
 
             }
         });

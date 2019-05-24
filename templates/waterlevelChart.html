@@ -127,11 +127,18 @@
                 labels: time,
                 datasets: [{
                     label: "Dataset for Water Level ",
-                    borderColor: 'rgb(255, 99, 132)',
                     data: waterlevel,
-                    backgroundColor: ['rgba(00, 255, 00, 0.1)',],
-                    borderColor: '#4dc9f6',
-                    borderWidth: 1.5
+                    fill: true,
+                    // backgroundColor: 'rgba(00, 255, 00, 0.1)',
+                    backgroundColor: 'rgba(52, 160, 233, 0.7)',
+                    borderColor: ['rgba(54, 162, 235, 1)',],
+                    borderWidth: 2.2,
+                    pointBorderColor: "rgba(54, 162, 235, 1)",
+                    pointBackgroundColor: "rgba(54, 162, 235, 1)",
+                    pointBorderWidth: 2,
+                    pointRadius: 0.8,
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
                 }]
             },
             // Configuration options go here

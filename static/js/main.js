@@ -4,3 +4,5 @@ const sidebar = document.querySelector('.sidebar');
 sideBarToggler.onclick = () =>{
     sidebar.classList.toggle('visible');
 };
+
+$('.alert').alert()

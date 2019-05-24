@@ -7,3 +7,63 @@ Turbidity is the cloudiness or haziness of a fluid caused by large numbers of in
  ...store in sqlite database
  ...retrieved and processed
  ...to be rendered in a simple web interface on the front
+
+
+
+
+ <!-- table data readings -->
+    <!-- <div class="container table-hover table-striped " id="tableRaised" style="height: 400px; overflow-y: scroll"> -->
+    <!-- <div class="container  " id="tableRaised">
+        <table class="table table-striped table-hover col-sm-12">
+            <caption>Data Reading</caption> -->
+    <!-- <thead class="bg-primary "> -->
+    <!-- <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Date & Time</th>
+                <th scope="col">Temperature (°C)</th>
+                <th scope="col">Turbidity (NTU)</th>
+                <th scope="col">pH</th>
+                <th scope="col">Water level (cm)</th>
+            </tr> -->
+    <!-- </thead> -->
+    <!-- <tbody> -->
+    <!-- {% for parameter in data %}
+            <tr>
+                <td>{{ parameter[0] }}</td>
+                <td>{{ parameter[1] }}</td>
+                <td>{{ parameter[2] }}</td>
+                <td>{{ parameter[3] }}</td>
+                <td>{{ parameter[4] }}</td>
+                <td>{{ parameter[5] }}</td>
+            </tr>
+            {% endfor %} -->
+
+    <!-- </tbody> -->
+    <!-- </table>
+    </div><br><br> -->
+
+    <!-- <div class="container" id="tableRaised" style="height: auto"> -->
+    <div style="min-height: 50% !important">
+        <table id="t01" class="table table-striped table-hover col-sm-12">
+            <caption>Data Reading</caption>
+            <tr row-span='4'>
+                <th scope="col">ID</th>
+                <th scope="col">Date & Time</th>
+                <th scope="col">Temperature (°C)</th>
+                <th scope="col">Turbidity (NTU)</th>
+                <th scope="col">pH</th>
+                <th scope="col">Water level (cm)</th>
+            </tr>
+            <!-- jinjering and templating data to a table -->
+            {% for d in data %}
+            <tr>
+                <td>{{ d[0] }}</td>
+                <td>{{ d[1] }}</td>
+                <td>{{ d[2] }}</td>
+                <td>{{ d[3] }}</td>
+                <td>{{ d[4] }}</td>
+                <td>{{ d[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div><br><br>

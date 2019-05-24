@@ -65,19 +65,19 @@ lsum = sum(temp1[-5:])
 psum = sum(temp1[-10:-5])
 c = lsum - psum
 pc = (c/lsum) * 100
-print(round(pc,2))
+# print(round(pc,2))
 
-print('min...', min(temp1))
+# print('min...', min(temp1))
 
-print(temp1[-1])
-l = ['temp : 2', 'turb: 23', 'ph: 5', 'water_level: 33']
+# print(temp1[-1])
+# l = ['temp : 2', 'turb: 23', 'ph: 5', 'water_level: 33']
 
 
-{
-    "temp":2, 
-}
+# {
+#     "temp":2, 
+# }
 
-print( l[1].split(':')[0] )
-# print("mean: ", round(mean, 2))
+# print( l[1].split(':')[0] )
+# # print("mean: ", round(mean, 2))
 
-# print(c,"%")
+# # print(c,"%")
