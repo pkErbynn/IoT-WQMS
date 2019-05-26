@@ -16,6 +16,7 @@ import json
 import sqlite3
 import time
 import statistics as stat
+import mail
 
 app = Flask(__name__)
 
@@ -44,20 +45,52 @@ def index():
 @app.route("/postData", methods=["POST"])
 def create_data():
     print(">>> posting data ....")
-    data = request.data
-    # decoding bytes data to string
-    decoded_data = data.decode('utf-8')  
-    key = ['temperature', 'turbidity', 'ph', 'water_level']
-    # data in list
-    string_value = decoded_data.split(',')
-    # dictionary processing
-    value = []
-    for v in string_value:
-        v = float(v)
-        value.append(v)
-    print(value)
-    #merge to dict()
-    data = dict(zip(key, value))
+    # expected data format from microcontroller;
+    # "temperatureValue", "turbidityValue", "phValue", "waterlevelValue"
+    # data = request.data
+
+    # # decoding bytes data to string
+    # decoded_data = data.decode('utf-8')  
+    # key = ['temperature', 'turbidity', 'ph', 'water_level']
+
+    # # data into list
+    # string_value = decoded_data.split(',')
+
+    # # dictionary processing
+    # value = []
+    # for v in string_value:
+    #     v = float(v)
+    #     value.append(v)
+    # print(value)
+
+    # #merge to dict()
+    # data = dict(zip(key, value))
+    # print(data)
+
+    """
+    for testing purposes with Postman, use:
+        request.json
+    """
+    data = request.json
+    print(data)
+
+
+    """
+    This attribute sends an email as an alert whenever data is out of normal range
+    """
+    try:
+        if (data["temperature"] < 23) | (data["temperature"] > 34) | \
+            (data["turbidity"] < 0) | (data["turbidity"] > 5) | \
+                (data["ph"] < 0) | (data["ph"] > 4) | \
+                    (data["water_level"] < 5) | (data["water_level"] > 27) :
+            mail.send_mail(data)
+    except Exception as err:
+        print(f'Email unsuccessful')
+
+    
+    """
+    Database handler 
+    """
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
     try:
@@ -65,9 +98,10 @@ def create_data():
                          VALUES (?, ?, ?, ?) """,
                    (data["temperature"], data["turbidity"], data["ph"], data["water_level"]))
         con.commit()
-        print("...data posted SUCCESSFULLY")
-    except:
+        print("Data posted SUCCESSFULLY")
+    except Exception as err:
         print('...posting data FAILED')
+        print(err)
    
     return jsonify({ "Status": "Data posted successfully"})
 
@@ -887,5 +921,5 @@ def dashboard():
 if __name__ == "__main__":
     app.debug = True
     # using default local ip penultimate 
-    # app.run()
-    app.run(debug=True, host='10.10.65.249', port=5050)   # setting your own ip
+    app.run()
+    # app.run(debug=True, host='10.10.65.249', port=5050)   # setting your own ip

@@ -34,9 +34,9 @@ sys management planning
 
 normal parameter ranges for tilapia(fish) production
 ...temp 23-34
+...turbidity(Nephelometric Turbidity Units or Jackson Turbidity Unit) 0 - 5
 ...ph   4-10
 ...water level 5 - 27
-...turbidity(Nephelometric Turbidity Units or Jackson Turbidity Unit) 0 - 5
 
 
 
