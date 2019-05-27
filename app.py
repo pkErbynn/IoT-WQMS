@@ -47,7 +47,7 @@ def create_data():
     print(">>> posting data ....")
     # expected data format from microcontroller;
     # "temperatureValue", "turbidityValue", "phValue", "waterlevelValue"
-    # data = request.data
+    data = request.data
 
     # decoding bytes data to string
     decoded_data = data.decode('utf-8')  
@@ -921,5 +921,5 @@ def dashboard():
 if __name__ == "__main__":
     app.debug = True
     # using default local ip penultimate 
-    app.run()
-    # app.run(debug=True, host='10.10.65.249', port=5050)   # setting your own ip
+    # app.run()
+    app.run(debug=True, host='10.10.65.249', port=5050)   # setting your own ip
