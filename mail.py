@@ -25,6 +25,7 @@ Usage:
 
 """
 
+
 import smtplib
 from email.message import EmailMessage
 
@@ -50,7 +51,9 @@ def send_mail(sensor_data):
         msg['To'] = to_email
 
         # This identifies specific data being recorded wrongly
-        for key, value in data.items():
+        print("Catching internal parameter with error...")
+        check_error = ''
+        for key, value in sensor_data.items():
             if key == "temperature":
                 if (value < 23) | (value > 34) :
                     if value < 23:
@@ -94,6 +97,14 @@ def send_mail(sensor_data):
         print(f"Oops!!...Failed to send mail. {err}")
 
 
-
+"""
+for testing...run this module
+"""
+# data = {
+#         "temperature": 28,
+#         "turbidity": 4,
+#         "ph": 2,
+#         "water_level": 23,
+#     }
 # send_mail(data)
 

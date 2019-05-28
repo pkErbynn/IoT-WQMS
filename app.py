@@ -53,7 +53,7 @@ def index():
     return render_template("index.html", todayDate=datetime.date.today(), )
 
 
-# posting data to database
+# posting collected data to database
 
 @app.route("/postData", methods=["POST"])
 def create_data():
@@ -74,7 +74,6 @@ def create_data():
     for v in string_value:
         v = float(v)
         value.append(v)
-    print(value)
 
     #merge to dict()
     data = dict(zip(key, value))
@@ -87,18 +86,25 @@ def create_data():
     # data = request.json
     # print(data)
 
-
     """
     This attribute sends an email as an alert whenever data is out of normal range
+    normal parameter ranges ;
+        ...temp 23-34
+        ...turbidity(Nephelometric Turbidity Units or Jackson Turbidity Unit) 0 - 5
+        ...ph   4-10
+        ...water level 5 - 27
+
+    example;
+            {'temperature': 25.31, 'turbidity': 4.13, 'ph': 8.04, 'water_level': 16.0}
     """
     try:
         if (data["temperature"] < 23) | (data["temperature"] > 34) | \
             (data["turbidity"] < 0) | (data["turbidity"] > 5) | \
-                (data["ph"] < 0) | (data["ph"] > 4) | \
+                (data["ph"] < 0) | (data["ph"] > 10) | \
                     (data["water_level"] < 5) | (data["water_level"] > 27) :
             mail.send_mail(data)
     except Exception as err:
-        print(f'Email unsuccessful')
+        print(f'Email unsuccessful. {err}')
 
     
     """
@@ -116,7 +122,7 @@ def create_data():
         print('...posting data FAILED')
         print(err)
    
-    return jsonify({ "Status": "Data posted successfully"})
+    return jsonify({ "Status": "Data posted successfully\n"})
 
 
 # empty list to be used for all parameter route
@@ -134,7 +140,7 @@ range_temp = 0
 
 @app.route("/tempChart/<x>")
 def temperature(x):
-    print(">>> temperature running ...")
+    print(">>> temperature page running ...")
     # connecting to datebase
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
@@ -183,7 +189,7 @@ def temperature(x):
         del temp[:]
     
         for datum in data:
-            print(datum)
+            # print(datum)
             datum_float = float(datum[1])
             temp.append(datum_float)
             t = str(datum[0][11:16])
@@ -263,7 +269,7 @@ def temperature(x):
         # retrieving monthly time and temp from database data
         for datum in data:
             # collecting temperature
-            print(datum)
+            # print(datum)
             datum_float = float(datum[1])   # temp data in float
             temp.append(datum_float)        # pushing to temp list
 
@@ -301,7 +307,7 @@ def temperature(x):
         # retrieving monthly time and temp from database data
         for datum in data:
             # collecting temperature
-            print(datum)
+            # print(datum)
             datum_float = float(datum[1])   # temp data in float
             temp.append(datum_float)        # pushing to temp list
 
@@ -343,7 +349,7 @@ def temperature(x):
         # retrieving monthly time and temp from database data
         for datum in data:
             # collecting temperature
-            print(datum)
+            # print(datum)
             datum_float = float(datum[1])   # temp data in float
             temp.append(datum_float)        # pushing to temp list
             # string month processing from full date timestamp
@@ -362,7 +368,7 @@ def temperature(x):
 
 @app.route("/phChart/<x>")
 def powerOfHydrogen(x):
-    print(">>> ph running ...")
+    print(">>> ph page running ...")
     # connecting to datebase
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
@@ -382,7 +388,7 @@ def powerOfHydrogen(x):
 
         # data extraction
         for datum in data:
-            print(datum)
+            # print(datum)
             # extracting ph data
             datum_float = float(datum[1])
             ph.append(datum_float)
@@ -415,7 +421,7 @@ def powerOfHydrogen(x):
 
         # data extraction
         for datum in data:
-            print(datum)
+            # print(datum)
             # extracting ph data
             datum_float = float(datum[1])
             ph.append(datum_float)
@@ -452,7 +458,7 @@ def powerOfHydrogen(x):
         # retrieving weekly time and ph from database data
         for datum in data:
             # collecting ph
-            print(datum)
+            # print(datum)
             datum_float = float(datum[1])   # ph data in float
             ph.append(datum_float)        # pushing to ph list
 
@@ -491,7 +497,7 @@ def powerOfHydrogen(x):
         # extracting monthly time and ph data to empty list
         for datum in data:
             # collecting ph
-            print(datum)
+            # print(datum)
             datum_float = float(datum[1])   # ph data to float
             ph.append(datum_float)       
 
@@ -580,7 +586,7 @@ def powerOfHydrogen(x):
 
 @app.route("/turbChart/<x>")
 def turb(x):
-    print(">>> turbidity running ...")
+    print(">>> turbidity page running ...")
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
     if x == '1h':
@@ -632,7 +638,7 @@ def turb(x):
         del time[:]
         del turbidity[:]
         for datum in data:
-            print(datum)
+            # print(datum)
             datum_float = float(datum[1])   # ph data in float
             turbidity.append(datum_float)        # pushing to ph list
             tm = str(datum[0][:10])
@@ -712,7 +718,7 @@ def turb(x):
 
 @app.route("/waterlevelChart/<x>")
 def waterdepth(x):
-    print(">>> waterlevel running ...")
+    print(">>> waterlevel page running ...")
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
     if x == '1h':
@@ -761,7 +767,7 @@ def waterdepth(x):
         del time[:]
         del waterlevel[:]
         for datum in data:
-            print(datum)
+            # print(datum)
             datum_float = float(datum[1])   # ph data in float
             waterlevel.append(datum_float)        # pushing to ph list
             tm = str(datum[0][:10])
@@ -935,4 +941,4 @@ if __name__ == "__main__":
     app.debug = True
     # using default local ip penultimate 
     app.run()
-    # app.run(debug=True, host='10.10.65.249', port=5050)   # setting your own ip
+    # app.run(debug=True, host='10.10.64.99', port=5050)   # setting your own ip
