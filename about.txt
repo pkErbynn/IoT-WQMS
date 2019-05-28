@@ -11,59 +11,12 @@ Turbidity is the cloudiness or haziness of a fluid caused by large numbers of in
 
 
 
- <!-- table data readings -->
-    <!-- <div class="container table-hover table-striped " id="tableRaised" style="height: 400px; overflow-y: scroll"> -->
-    <!-- <div class="container  " id="tableRaised">
-        <table class="table table-striped table-hover col-sm-12">
-            <caption>Data Reading</caption> -->
-    <!-- <thead class="bg-primary "> -->
-    <!-- <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Date & Time</th>
-                <th scope="col">Temperature (°C)</th>
-                <th scope="col">Turbidity (NTU)</th>
-                <th scope="col">pH</th>
-                <th scope="col">Water level (cm)</th>
-            </tr> -->
-    <!-- </thead> -->
-    <!-- <tbody> -->
-    <!-- {% for parameter in data %}
-            <tr>
-                <td>{{ parameter[0] }}</td>
-                <td>{{ parameter[1] }}</td>
-                <td>{{ parameter[2] }}</td>
-                <td>{{ parameter[3] }}</td>
-                <td>{{ parameter[4] }}</td>
-                <td>{{ parameter[5] }}</td>
-            </tr>
-            {% endfor %} -->
+ Good water quality is essential for the health of our aquatic ecosystems. 
+ Continuous water quality monitoring is an important tool for catchment management authorities, providing real-time data for environmental protection and tracking pollution sources; 
+ however, continuous water quality monitoring at high temporal and spatial resolution remains prohibitively expensive. 
+ An affordable wireless aquatic monitoring system will enable cost-effective water quality data collection, assisting catchment managers to maintain the health of aquatic ecosystems. 
+ In this paper, a low-cost wireless water physiochemistry sensing system is presented. The results indicate that with appropriate calibration, a reliable monitoring system can be established. 
+ This will allow catchment managers to continuously monitoring the quality of the water at higher spatial resolution than has previously been feasible, and to maintain this surveillance over an extended period of time. 
+ In addition, it helps to understand the behavior of aquatic animals relative to water pollution using data analysis
 
-    <!-- </tbody> -->
-    <!-- </table>
-    </div><br><br> -->
-
-    <!-- <div class="container" id="tableRaised" style="height: auto"> -->
-    <div style="min-height: 50% !important">
-        <table id="t01" class="table table-striped table-hover col-sm-12">
-            <caption>Data Reading</caption>
-            <tr row-span='4'>
-                <th scope="col">ID</th>
-                <th scope="col">Date & Time</th>
-                <th scope="col">Temperature (°C)</th>
-                <th scope="col">Turbidity (NTU)</th>
-                <th scope="col">pH</th>
-                <th scope="col">Water level (cm)</th>
-            </tr>
-            <!-- jinjering and templating data to a table -->
-            {% for d in data %}
-            <tr>
-                <td>{{ d[0] }}</td>
-                <td>{{ d[1] }}</td>
-                <td>{{ d[2] }}</td>
-                <td>{{ d[3] }}</td>
-                <td>{{ d[4] }}</td>
-                <td>{{ d[5] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div><br><br>
+Rao, A.S., Marshall, S., Gubbi, J., Palaniswami, M., Sinnott, R.O., & Pettigrovet, V. (2013). Design of low-cost autonomous water quality monitoring system. 2013 International Conference on Advances in Computing, Communications and Informatics (ICACCI), 14-19.

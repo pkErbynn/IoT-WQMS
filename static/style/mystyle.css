@@ -1,13 +1,15 @@
-/* background color:  */
+/* 
+    This is a sidebar stylesheet 
+*/
 
-body{
+body {
     padding: 0px;
     margin: 0px;
     /* background-color:#dcdcdc; */
     background-color: lightgrey;
 }
 
-.sidebar{
+.sidebar {
     position: absolute;
     width: 150px;
     height: 100vh;
@@ -16,36 +18,35 @@ body{
     z-index: 100;
 }
 
-.visible{
+.visible {
     transform: translateX(0px);
 }
 
-.sBarBtn{
+.sBarBtn {
     transition: all .5s;
 }
 
-.sBarBtn:hover{
+.sBarBtn:hover {
     transform: translateY(-3px);
 }
 
-
-.custon-shadow{
-    box-shadow: 0px 2px 1px 1px  rgb(184, 182, 182);
+.custon-shadow {
+    box-shadow: 0px 2px 1px 1px rgb(184, 182, 182);
 }
-.strk{
+
+.strk {
     font-weight: bolder;
     -webkit-text-stroke: 2px black;
 }
 
-.iconBtn{
+.iconBtn {
     width: 30px;
-    margin: 6px 0px; 
+    margin: 6px 0px;
 }
 
-thead, tbody { display: block; }
+/* thead, tbody { display: block; } */
 
+/* 
 tbody {
-    height: 100px;       /* Just for the demo          */
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide the horizontal scroll */
-}
+    height: 100%;       
+} */

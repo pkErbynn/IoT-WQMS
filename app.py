@@ -1,7 +1,18 @@
 '''
 Water Quality System (WQMS) 
 
-Created : March 2019
+This module is the bussiness logic layer. 
+It does data validation,
+...dynamic data processing,
+...generates contents to be delivered to UI 
+...data rendering
+...pulls data from DB for processing
+
+Usage:
+    run <python app.py> 
+    follow url given
+
+Created : March 2019 by pkErbynn
 
 Authors : John Pk Erbynn, Josiah Nii Kortey, Isaac Agyen Duffour
 
@@ -17,6 +28,7 @@ import sqlite3
 import time
 import statistics as stat
 import mail
+from config import credential
 
 app = Flask(__name__)
 
@@ -27,17 +39,18 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 @app.route("/", methods = ['GET', 'POST'])
 @app.route("/index", methods=["GET", "POST"])
 def index():
-    dash = False
     if request.method == 'POST':
         username = request.form['username']
         passwd = request.form['password']
-        if username == 'admin' and passwd == 'wqms':
-            dash = True
+
+        # credentials from config files imported
+        if username == credential['name'] and passwd == credential['passwd']:
             flash('You have successfully logged in !')
             return redirect(url_for('dashboard'))   # redirect( /dashboard )
         else:
             flash('Login Unsuccessful. Please check username and password',)
-    return render_template("index.html", todayDate=datetime.date.today(), dash=dash,)
+
+    return render_template("index.html", todayDate=datetime.date.today(), )
 
 
 # posting data to database
@@ -89,7 +102,7 @@ def create_data():
 
     
     """
-    Database handler 
+    This code snippet handles the database  
     """
     con = sqlite3.connect('iot_wqms_data.db')
     cursor = con.cursor()
@@ -921,5 +934,5 @@ def dashboard():
 if __name__ == "__main__":
     app.debug = True
     # using default local ip penultimate 
-    # app.run()
-    app.run(debug=True, host='10.10.65.249', port=5050)   # setting your own ip
+    app.run()
+    # app.run(debug=True, host='10.10.65.249', port=5050)   # setting your own ip

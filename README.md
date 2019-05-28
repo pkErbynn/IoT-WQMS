@@ -1,4 +1,4 @@
-josiah nii kortey 38
+```general````
 
 Turbidity is the cloudiness or haziness of a fluid caused by large numbers of individual particles that are generally invisible to the naked eye, similar to smoke in air. The measurement of turbidity is a key test of water quality.
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Acqua</title>
+    <title>WQMS_Turbidity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
@@ -18,16 +18,27 @@
             /* background: red !important; */
             opacity: 0.6;
         }
+        /* removes underline on hover */
+        a:hover,
+        a:active,
+        a:visited,
+        a:link {
+            /* Applies to links under the pointer */
+            text-decoration: none;
+        }
     </style>
 
 </head>
 
+
+
 <body id="mybody">
+
     <!-- header -->
     <header>
         <div class="container-fluid bg-white p-3 text-muted shadow d-flex justify-content-between">
             <div>
-                <h4><span class="text-success">IoT</span> <span class="text-info">WQMS</span>-MONITOR</h4>
+                <h4><a href="/dashboard"><span class="text-success">IoT</span> <span class="text-info">WQMS</span>MONITOR</a></h4>
             </div>
             <div>
                 <button type="button" class="btn bg-light" id="sideBarToggler">
@@ -73,11 +84,15 @@
     <section>
         <div class="container m-auto text-center text-muted">
             <div class="card shadow p-3 my-3 chartsCard" style="height: auto">
-                <h4 class="card-title"><span style="font-weight: bold">Turbidity</span> (NTU) <small> - <i>{{name}}</i></small></h4>
+                <h4 class="card-title"><span style="font-weight: bold">Turbidity</span>(NTU) <small> -
+                        <i>{{name}}</i></small></h4>
                 <canvas id="turbidityOfWater" name="turb" class="resize" height="400px"></canvas>
                 <h7>{{label}}</<h7><br><br>
-                <hr style="margin-left: 10%; margin-right: 10%; width: 80%; display: block; border-top: 1.5px solid #ccc; margin: 1em 4;">
-                <p><pre>  Average : {{average_turbidity}}    |    Min : {{min_turbidity}}    |    Max : {{max_turbidity}}   |   Range : {{range_turbidity}}</pre></p>
+                    <hr
+                        style="margin-left: 10%; margin-right: 10%; width: 80%; display: block; border-top: 1.5px solid #ccc; margin: 1em 4;">
+                    <p>
+                        <pre>  Average : {{average_turbidity}}    |    Min : {{min_turbidity}}    |    Max : {{max_turbidity}}   |   Range : {{range_turbidity}}</pre>
+                    </p>
             </div><br>
         </div>
     </section>
@@ -87,7 +102,7 @@
         <div class="container-fluid p-3 text-center text-light bg-info" style="background-color: #15324f !important;">
             <div class="container">
                 All right Reserved |
-                Copy Right &copy; 2019 | WQMS <br>
+                Copy Right &copy; 2019 | Iot WQMS <br>
                 <a href="#"><i class="fab fa-facebook fa-lg mx-2 my-4 text-warning"></i></a>
                 <a href="#"><i class="fab fa-instagram fa-lg mx-2 my-4 text-warning"></i></a>
                 <a href="#"><i class="fab fa-twitter fa-lg mx-2 my-4 text-warning"></i></a>
@@ -96,7 +111,8 @@
         </div>
     </footer>
 
-    <!-- script -->
+
+    <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -107,14 +123,14 @@
     <!-- user defined js must be last -->
     <script src="../static/js/main.js"></script>
 
-
+    <!-- Chart generation -->
     <script>
         // parsing data to chart 
         var time = []
         time = {{ time | safe }}
         var turbidity = []
         turbidity = {{ turbidity | safe }}
-        const turbidityChart = new Chart(turbidityOfWater, { 
+        const turbidityChart = new Chart(turbidityOfWater, {
             type: 'line',
             data: {
                 labels: time,

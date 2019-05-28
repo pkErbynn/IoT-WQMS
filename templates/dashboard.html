@@ -4,24 +4,30 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Aqua</title>
+    <title>WQMS_Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <meta http-equiv="refresh" content="10"> -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
 
+    <!-- refreshes the page with 30 seconds interval -->
+    <meta http-equiv="refresh" content="30">
+
+    <!-- Bootstrap CDN -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+
+    <!-- Local Bootstrap link -->
     <link rel="stylesheet" type="text/css" media="screen" href="../static/bootstrap-4.1.3/css/bootstrap.min.css">
+
+    <!-- Custom CSS link -->
     <link rel="stylesheet" type="text/css" medi9a="screen" href="../static/style/mystyle.css">
-    <!-- <link rel="stylesheet" type="text/css" media="all" href="../static/style/hover-min.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style/style.css') }}"> -->
 
     <style>
         /* side bar */
         #transparent {
             background-color: transparent;
-            /* background: red !important; */
             opacity: 0.6;
         }
+
         /* card hover */
         .pkfloat {
             vertical-align: middle;
@@ -32,6 +38,7 @@
             -webkit-transition-property: box-shadow, transform;
             transition-property: box-shadow, transform;
         }
+
         .pkfloat:hover,
         .pkfloat:focus,
         .pkfloat:active {
@@ -39,6 +46,7 @@
             -webkit-transform: scale(1.0);
             transform: scale(1.01);
         }
+
         /* divider in card */
         #hori_line {
             margin-left: 10%;
@@ -48,12 +56,14 @@
             border-top: 1.5px solid #ccc;
             margin: 1em 4;
         }
+
         /* raise table */
         #tableRaised {
             /* Add shadows to create the "card" effect */
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
         }
+
         /* table fields */
         .table .bg-primary th {
             color: rgb(236, 236, 236);
@@ -61,51 +71,79 @@
             border-color: #ced2d6;
 
         }
+
         /* removing underline on hover */
-        a:hover,a:active,a:visited,a:link {
+        a:hover,
+        a:active,
+        a:visited,
+        a:link {
             /* Applies to links under the pointer */
             text-decoration: none;
         }
 
+
         /* table */
-        table {
-                /* width: 100%; */
-        }
-        table, th, td {
+        table,
+        th,
+        td {
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             padding: 15px;
             /* text-align: left; */
             text-align: center;
             width: 600px;
         }
+
         table#t01 tr:nth-child(even) {
             background-color: #eee;
         }
+
         table#t01 tr:nth-child(odd) {
             background-color: #fff;
         }
+
         table#t01 th {
             background-color: rgb(0, 80, 133);
             color: white;
         }
+
         /* centering table */
         .table {
             margin: auto;
             width: 82% !important;
             /* height: 50%; */
         }
-    </style>
 
+        /* table vertical scroll bar controller */
+        thead,
+        tbody {
+            display: block;
+        }
+
+        tbody {
+            height: 300px;  /* Just for the demo          */
+            overflow-y: auto;   /* Trigger vertical scroll    */
+            overflow-x: hidden; /* Hide the horizontal scroll */
+        }
+
+        table thead tr {
+            display: block;
+        }
+    </style>
 
 </head>
 
+
 <body>
+    <!-- header -->
     <header>
         <div class="container-fluid bg-white p-3 text-muted shadow d-flex justify-content-between">
             <div>
-                <h4><span class="text-success">IoT</span> <span class="text-info">WQMS</span>-MONITOR</h4>
+                <h4><a href="/dashboard"><span class="text-success">IoT</span><span
+                            class="text-info">WQMS</span>MONITOR</a></h4>
             </div>
             <div>
                 <button type="button" class="btn bg-light" id="sideBarToggler">
@@ -131,7 +169,7 @@
         </div>
     </div>
 
-    <!-- flash messaging, if login succeed -->
+    <!-- flash messaging, if login succeeds -->
     <div class="container-fluid">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -161,7 +199,8 @@
     <!-- main body -->
     <div class="container my-3">
         <div class="row text-center">
-            <!-- temperature -->
+
+            <!-- temperature data card -->
             <div class="col-6 col-sm-3">
                 <a href="/tempChart/1h">
                     <div class="card custon-shadow mt-3 pkfloat">
@@ -235,11 +274,10 @@
         </div>
     </div><br><br>
 
-
-   
-    <div style="min-height: 50% !important">
+    <!-- Inverted data readings table  -->
+    <div>
         <table id="t01" class="table table-striped table-hover col-sm-12">
-            <caption>Data Reading</caption>
+            <caption>Data Readings</caption>
             <tr row-span='4'>
                 <th scope="col">ID</th>
                 <th scope="col">Date & Time</th>
@@ -248,7 +286,8 @@
                 <th scope="col">pH</th>
                 <th scope="col">Water level (cm)</th>
             </tr>
-            <!-- jinjering and templating data to a table -->
+
+            <!-- jinjering and templating data to table -->
             {% for d in data %}
             <tr>
                 <td>{{ d[0] }}</td>
@@ -268,7 +307,7 @@
         <div class="container-fluid p-3 text-center text-light bg-info" style="background-color: #15324f !important; ">
             <div class="container">
                 All right Reserved &nbsp; | &nbsp;
-                Copy Right &copy; 2019 &nbsp; | &nbsp; WQMS <br>
+                Copy Right &copy; 2019 &nbsp; | &nbsp; IoT WQMS <br>
                 <a href="#"><i class="fab fa-facebook fa-lg mx-2 my-4 text-warning"></i></a>
                 <a href="#"><i class="fab fa-instagram fa-lg mx-2 my-4 text-warning"></i></a>
                 <a href="#"><i class="fab fa-twitter fa-lg mx-2 my-4 text-warning"></i></a>
