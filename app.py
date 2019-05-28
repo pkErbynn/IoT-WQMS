@@ -58,33 +58,33 @@ def index():
 @app.route("/postData", methods=["POST"])
 def create_data():
     print(">>> posting data ....")
-    # expected data format from microcontroller;
-    # "temperatureValue", "turbidityValue", "phValue", "waterlevelValue"
-    data = request.data
+    # # expected data format from microcontroller;
+    # # "temperatureValue", "turbidityValue", "phValue", "waterlevelValue"
+    # data = request.data
 
-    # decoding bytes data to string
-    decoded_data = data.decode('utf-8')  
-    key = ['temperature', 'turbidity', 'ph', 'water_level']
+    # # decoding bytes data to string
+    # decoded_data = data.decode('utf-8')  
+    # key = ['temperature', 'turbidity', 'ph', 'water_level']
 
-    # data into list
-    string_value = decoded_data.split(',')
+    # # data into list
+    # string_value = decoded_data.split(',')
 
-    # dictionary processing
-    value = []
-    for v in string_value:
-        v = float(v)
-        value.append(v)
+    # # dictionary processing
+    # value = []
+    # for v in string_value:
+    #     v = float(v)
+    #     value.append(v)
 
-    #merge to dict()
-    data = dict(zip(key, value))
-    print(data)
-
-    # """
-    # for testing purposes with Postman, use:
-    #     request.json
-    # """
-    # data = request.json
+    # #merge to dict()
+    # data = dict(zip(key, value))
     # print(data)
+
+    """
+    for testing purposes with Postman, use:
+        request.json
+    """
+    data = request.json
+    print(data)
 
     """
     This attribute sends an email as an alert whenever data is out of normal range
