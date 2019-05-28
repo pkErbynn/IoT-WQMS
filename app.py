@@ -938,7 +938,8 @@ def dashboard():
 
 
 if __name__ == "__main__":
-    app.debug = True
+    # trun debug off when deploying
+    # app.debug = True
     # using default local ip penultimate 
     app.run()
     # app.run(debug=True, host='10.10.64.99', port=5050)   # setting your own ip
