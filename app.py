@@ -60,6 +60,7 @@ def create_data():
     """
     To remotely access this route and post data after deployment on Heroku, use:
         <deployed link>/postData
+        Eg; https://wqms.herokuapp.com/postData
     """
 
     print(">>> posting data ....")
@@ -84,12 +85,14 @@ def create_data():
     data = dict(zip(key, value))
     print(data)
 
+
     # """
     # for testing purposes with Postman, use:
     #     request.json
     # """
     # data = request.json
     # print(data)
+
 
     """
     This attribute sends an email as an alert whenever data is out of normal range
@@ -102,7 +105,7 @@ def create_data():
     example;
             {'temperature': 25.31, 'turbidity': 4.13, 'ph': 8.04, 'water_level': 16.0}
     """
-    
+
     try:
         if (data["temperature"] < 23) | (data["temperature"] > 34) | \
             (data["turbidity"] < 0) | (data["turbidity"] > 5) | \
