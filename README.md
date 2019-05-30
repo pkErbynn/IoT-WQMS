@@ -1,7 +1,9 @@
 IoT-Based Water Quality Monitoring System(WQMS) for Aquaculture.
 
 
+
 The purpose of this project is to design and implement a water monitoring system to consistently monitor the status of water to be quality conducive for fish farming in the aquaculture sector.
+
 
 
 This project is intended to ...
@@ -15,6 +17,7 @@ This project is intended to ...
             Turbidity(Nephelometric Turbidity Units or Jackson Turbidity Unit) 0-5
             pH  4-10
             Water level 5-27 (based on site)
+
 
 
 Technologies Used
@@ -41,6 +44,7 @@ Usage:
     Connect micro-controller to the internet
     Run <python app.py>
     Visit url provided. Enjoy :)
+
 
 
 Project Team Members
