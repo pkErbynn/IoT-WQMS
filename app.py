@@ -65,7 +65,7 @@ def create_data():
 
     print(">>> posting data ....")
     # expected data format from microcontroller;
-    # "temperatureValue", "turbidityValue", "phValue", "waterlevelValue"
+    # b"temperatureValue", "turbidityValue", "phValue", "waterlevelValue"
     data = request.data
 
     # decoding bytes data to string
@@ -83,7 +83,7 @@ def create_data():
 
     #merge to dict()
     data = dict(zip(key, value))
-    print(data)
+    # print(data)
 
 
     # """
@@ -92,7 +92,6 @@ def create_data():
     # """
     # data = request.json
     # print(data)
-
 
     """
     This attribute sends an email as an alert whenever data is out of normal range
@@ -946,12 +945,16 @@ def dashboard():
     return render_template("dashboard.html", data=data, percentage_temp_change=percentage_temp_change, percentage_ph_change=percentage_ph_change, percentage_turbidity_change=percentage_turbidity_change, percentage_waterlevel_change=percentage_waterlevel_change, temp_change=temp_change, ph_change=ph_change, turbidity_change=turbidity_change, waterlevel_change=waterlevel_change, last_temp_data=last_temp_data, last_ph_data=last_ph_data, last_turbidity_data=last_turbidity_data, last_waterlevel_data=last_waterlevel_data)
 
 
+# main function
 if __name__ == "__main__":
-    # trun debug off when deploying
-    # app.debug = True
     try:
-        # using default local ip penultimate 
+        # turn debug off when deploying
+        # app.debug = True
+        # using local ip address 
         app.run()
+
+        # using static ip
         # app.run(debug=True, host='10.10.64.99', port=5050)   # setting your own ip
-    except:
-        print("Failed to run program")
+
+    except Exception as rerun:
+        print("Failed to run main program >>",rerun)
