@@ -7,10 +7,12 @@ The purpose of this project is to design and implement a water monitoring system
 This project is intended to ...
     ...to continuously monitor the chemical properties( pH, temperature) of water for fish farming.
     ...to consistently monitor the physical properties(turbidity, water level) of water for aquaculture
-    ...to remotely keep track of the status of water in real time
+    ...to remotely keep track of the status of water in real time and send email notification when wrong data is recorded.
     ...to generate a live visual chart of the properties of water pond for analysis and interpretation
-    ...to collect large data of the status of water for research by scientists 
-    ...to send email notification when wrong data is recorded. The normal parameter ranges for tilapia(fish) production
+    ...to collect data of the status of water for research by scientists 
+
+
+  The normal parameter ranges for tilapia(fish) production
             Temperature  23-34
             Turbidity(Nephelometric Turbidity Units or Jackson Turbidity Unit) 0-5
             pH  4-10

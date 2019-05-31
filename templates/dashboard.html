@@ -203,7 +203,6 @@
         <div class="row text-center">
 
             <!-- temperature data card -->
-            <!-- <div class="col-6 col-sm-3"> -->
             <div class="col-xs-12 col-6 col-lg-3">
                 <a href="/tempChart/1h">
                     <div class="card custon-shadow mt-3 pkfloat">
@@ -242,7 +241,6 @@
             </div>
 
             <!-- ph card -->
-            <!-- <div class="col-6 col-sm-3"> -->
             <div class="col-xs-12 col-6 col-lg-3">
                 <a href="/phChart/1h">
                     <div class="card custon-shadow mt-3 pkfloat">
@@ -259,11 +257,11 @@
             </div>
 
             <!-- water level card -->
-            <!-- <div class="col-12 col-6 col-sm-3"> -->
             <div class="col-xs-12 col-6 col-lg-3">
                 <a href="/waterlevelChart/1h">
                     <div class="card custon-shadow mt-3 pkfloat">
-                        <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">H<sub>2</sub>O Level</h6>
+                        <h5 class="card-title border-bottom p-1 text-light bg-primary rounded">H<sub>2</sub>O Level</h5>
+                        <!-- <h6 class="card-title border-bottom p-1 text-light bg-primary rounded">Water Level</h6> -->
                         <span class="card-text"><br>
                             <span class="h2">{{last_waterlevel_data}}</span>
                             <span class="text-primary">cm</span>
@@ -280,7 +278,7 @@
     </div><br><br>
 
     <!-- Inverted data readings table  -->
-    <div>
+    <div class="table-responsive">
         <table id="t01" class="table table-striped table-hover col-sm-12">
             <caption>Data Readings</caption>
             <tr row-span='4'>

@@ -4,17 +4,16 @@ Water Quality System (WQMS)
 This module is the bussiness logic layer. 
 It does data validation,
 ...dynamic data processing,
-...generates contents to be delivered to UI 
-...data rendering
+...generates and render contents to be delivered to UI 
 ...pulls data from DB for processing
 
 Usage:
     run <python app.py> 
     follow url given
 
-Created : March 2019 by pkErbynn
+Created : March 2019
 
-Authors : John Pk Erbynn, Josiah Nii Kortey, Isaac Agyen Duffour
+Author(s) : John Pk Erbynn, Josiah Nii Kortey, Isaac Agyen Duffour
 
 '''
 
@@ -39,6 +38,7 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 @app.route("/", methods = ['GET', 'POST'])
 @app.route("/index", methods=["GET", "POST"])
 def index():
+    print("landing page running...")
     if request.method == 'POST':
         username = request.form['username']
         passwd = request.form['password']
@@ -404,10 +404,6 @@ def powerOfHydrogen(x):
             t = str(datum[0][14:])
             time.append(t)
         
-        print("time...", time)
-        print("pH...", ph)
-        print("length...", len(ph))
-
         # analysis
         average_ph = round(stat.mean(ph), 2)
         min_ph = round(min(ph), 2)
@@ -954,7 +950,7 @@ if __name__ == "__main__":
         app.run()
 
         # using static ip
-        # app.run(debug=True, host='10.10.64.99', port=5050)   # setting your own ip
+        # app.run(debug=True, host='192.168.43.110 ', port=5050)   # setting your own ip
 
     except Exception as rerun:
         print("Failed to run main program >>",rerun)
