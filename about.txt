@@ -9,3 +9,6 @@ INTRO
  In addition, it helps to understand the behavior of aquatic animals relative to water pollution using data analysis
 
 Rao, A.S., Marshall, S., Gubbi, J., Palaniswami, M., Sinnott, R.O., & Pettigrovet, V. (2013). Design of low-cost autonomous water quality monitoring system. 2013 International Conference on Advances in Computing, Communications and Informatics (ICACCI), 14-19.
+
+
+CSV file and then import that into a spreadsheet to analyze the data, generate graphs for a presentation, or prepare a report for publication.

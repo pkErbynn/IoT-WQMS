@@ -6,6 +6,7 @@ It does data validation,
 ...dynamic data processing,
 ...generates and render contents to be delivered to UI 
 ...pulls data from DB for processing
+...data download in csv format
 
 Usage:
     run <python app.py> 
@@ -13,14 +14,15 @@ Usage:
 
 Created : March 2019
 
-Author(s) : John Pk Erbynn, Josiah Nii Kortey, Isaac Agyen Duffour
+Author(s) : John Pk Erbynn(john.erbynn@gmail.com), 
+            Josiah Nii Kortey(josiahkotey13@gmail.com), 
+            Isaac Agyen Duffour(izagyen96@gmail.com)
 
 '''
 
 
-from flask import Flask, render_template, flash, redirect, render_template, request, url_for
+from flask import Flask, render_template, flash, redirect, request, jsonify, url_for, Response
 # from aquaLite import *
-from flask import jsonify
 import datetime
 import json
 import sqlite3
@@ -28,6 +30,7 @@ import time
 import statistics as stat
 import mail
 from config import credential
+import generator
 
 app = Flask(__name__)
 
@@ -389,6 +392,7 @@ def powerOfHydrogen(x):
         # selecting ph data
         cursor.execute(" SELECT time, ph FROM ( SELECT * from iot_wqms_table ORDER BY id DESC LIMIT 120 ) order by id asc ") 
         data = cursor.fetchall()
+        # print(data)
 
         # emptying list 
         del time[:]
@@ -716,7 +720,6 @@ def turb(x):
         max_turbidity = round(max(turbidity), 2)
         range_turbidity = float( round((max_turbidity - min_turbidity), 2) )
 
-
     return render_template("turbChart.html", turbidity=turbidity, time=time, label=label, name=name, average_turbidity=average_turbidity, min_turbidity=min_turbidity, max_turbidity=max_turbidity, range_turbidity=range_turbidity)
 
 
@@ -941,8 +944,78 @@ def dashboard():
     return render_template("dashboard.html", data=data, percentage_temp_change=percentage_temp_change, percentage_ph_change=percentage_ph_change, percentage_turbidity_change=percentage_turbidity_change, percentage_waterlevel_change=percentage_waterlevel_change, temp_change=temp_change, ph_change=ph_change, turbidity_change=turbidity_change, waterlevel_change=waterlevel_change, last_temp_data=last_temp_data, last_ph_data=last_ph_data, last_turbidity_data=last_turbidity_data, last_waterlevel_data=last_waterlevel_data)
 
 
+
+"""
+This section prepares and download the data in csv format for analysis
+Created: 31st May, 2019 by John PK Erbynn
+Ack: Dennis Effa Amponsah
+
+NB: prop implies property(of water)
+"""
+
+@app.route("/download/<prop>")
+def get_CSV(prop):
+    print(">>> csv file downloaded")
+
+    if prop == 'temperature':
+        # prepare data in csv format
+        generator.generate_csv_file(prop)
+
+        # opens, reads, closes csv file for download 
+        with open(f'data/wqms_{prop}_data.csv', 'r') as csv_file:
+            csv_reader = csv_file.read().encode('latin-1')
+        csv_file.close()
+
+        # routes function returning the file download
+        return Response(
+            csv_reader,
+            mimetype="text/csv",
+            headers={"Content-disposition": "attachment; filename=wqms_%s.csv" %prop}
+        )
+    
+
+    if prop == 'turbidity':
+        generator.generate_csv_file(prop)
+        with open(f'data/wqms_{prop}_data.csv', 'r') as csv_file:
+            csv_reader = csv_file.read().encode('latin-1')
+        csv_file.close()
+
+        return Response(
+            csv_reader,
+            mimetype="text/csv",
+            headers={"Content-disposition": "attachment; filename=wqms_%s.csv" %prop}
+        )
+
+
+    if prop == 'ph':
+        generator.generate_csv_file(prop)
+        with open(f'data/wqms_{prop}_data.csv', 'r') as csv_file:
+            csv_reader = csv_file.read().encode('latin-1')
+        csv_file.close()
+
+        return Response(
+            csv_reader,
+            mimetype="text/csv",
+            headers={"Content-disposition": "attachment; filename=wqms_%s.csv" %prop}
+        )
+    
+
+    if prop == 'water_level':
+        generator.generate_csv_file(prop)
+        with open(f'data/wqms_{prop}_data.csv', 'r') as csv_file:
+            csv_reader = csv_file.read().encode('latin-1')
+        csv_file.close()
+
+        return Response(
+            csv_reader,
+            mimetype="text/csv",
+            headers={"Content-disposition": "attachment; filename=wqms_%s.csv" %prop}
+        )
+       
+
+
 # main function
-if __name__ == "__main__":
+if  __name__ == "__main__":
     try:
         # turn debug off when deploying
         # app.debug = True
@@ -953,4 +1026,4 @@ if __name__ == "__main__":
         # app.run(debug=True, host='192.168.43.110 ', port=5050)   # setting your own ip
 
     except Exception as rerun:
-        print("Failed to run main program >>",rerun)
+        print(">>> Failed to run main program : ",rerun)

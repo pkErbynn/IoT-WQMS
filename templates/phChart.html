@@ -97,13 +97,18 @@
                     <small> - <i>{{name}}</i></small>
                 </h4>
                 <canvas id="power_of_hydrogen" name="ph" class="resize" height="400px"></canvas>
-                <h7>{{label}}</<h7><br><br>
+                <h7>{{label}}</<h7><br>
                     <hr
                         style="margin-left: 10%; margin-right: 10%; width: 80%; display: block; border-top: 1.5px solid #ccc; margin: 1em 4;">
                     <p>
                         <pre>  Average : {{average_ph}}    |    Min : {{min_ph}}    |    Max : {{max_ph}}   |   Range : {{range_ph}}</pre>
                     </p>
-            </div><br>
+            </div>
+
+             <!-- download button -->
+             <div class="container" style="margin-bottom: 30px">
+                <a href="/download/ph"><button type="button" class="btn btn-outline-primary shadow">Download Data</button></a>
+            </div>
         </div>
     </section>
 

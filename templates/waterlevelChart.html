@@ -100,13 +100,18 @@
                     <small> - <i>{{name}}</i></small>
                 </h4>
                 <canvas id="waterdepth" name="waterlevel" class="resize" height="400px"></canvas>
-                <h7>{{label}}</<h7><br><br>
+                <h7>{{label}}</<h7><br>
                     <hr
                         style="margin-left: 10%; margin-right: 10%; width: 80%; display: block; border-top: 1.5px solid #ccc; margin: 1em 4;">
                     <p>
                         <pre>  Average : {{average_waterlevel}}    |    Min : {{min_waterlevel}}    |    Max : {{max_waterlevel}}   |   Range : {{range_waterlevel}}</pre>
                     </p>
-            </div><br>
+            </div>
+
+             <!-- download button -->
+             <div class="container" style="margin-bottom: 30px">
+                <a href="/download/water_level"><button type="button" class="btn btn-outline-primary shadow">Download Data</button></a>
+            </div>
         </div>
     </section>
 

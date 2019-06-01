@@ -95,13 +95,18 @@
                 <h4 class="card-title"><span style="font-weight: bold">Turbidity</span>(NTU) <small> -
                         <i>{{name}}</i></small></h4>
                 <canvas id="turbidityOfWater" name="turb" class="resize" height="400px"></canvas>
-                <h7>{{label}}</<h7><br><br>
+                <h7>{{label}}</<h7><br>
                     <hr
                         style="margin-left: 10%; margin-right: 10%; width: 80%; display: block; border-top: 1.5px solid #ccc; margin: 1em 4;">
                     <p>
                         <pre>  Average : {{average_turbidity}}    |    Min : {{min_turbidity}}    |    Max : {{max_turbidity}}   |   Range : {{range_turbidity}}</pre>
                     </p>
-            </div><br>
+            </div>
+
+             <!-- download button -->
+             <div class="container" style="margin-bottom: 30px">
+                <a href="/download/turbidity"><button type="button" class="btn btn-outline-primary shadow">Download Data</button></a>
+            </div>
         </div>
     </section>
 
