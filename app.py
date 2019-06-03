@@ -968,11 +968,7 @@ def dashboard():
 
 
     # notification toast 
-    # flash('toaster notification')
-    # flash("All OK", 'success')
-    # flash("All Normal", 'info')
     # flash("Not So OK", 'error')
-    # flash("So So", 'warning')
 
     return render_template("dashboard.html", data=data, percentage_temp_change=percentage_temp_change, percentage_ph_change=percentage_ph_change, percentage_turbidity_change=percentage_turbidity_change, percentage_waterlevel_change=percentage_waterlevel_change, temp_change=temp_change, ph_change=ph_change, turbidity_change=turbidity_change, waterlevel_change=waterlevel_change, last_temp_data=last_temp_data, last_ph_data=last_ph_data, last_turbidity_data=last_turbidity_data, last_waterlevel_data=last_waterlevel_data)
 
