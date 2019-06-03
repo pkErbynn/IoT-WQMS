@@ -31,11 +31,18 @@ import statistics as stat
 import mail
 from config import credential
 import generator
+from flask_toastr import Toastr     # toastr module import
+import create_database
+
 
 app = Flask(__name__)
 
+# python notification toaster
+toastr = Toastr(app)
+
 # Set the secret_key on the application to something unique and secret.
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+
 
 # home route....landing page
 @app.route("/", methods = ['GET', 'POST'])
@@ -48,18 +55,19 @@ def index():
 
         # credentials from config files imported
         if username == credential['name'] and passwd == credential['passwd']:
-            flash('You have successfully logged in !')
-            return redirect(url_for('dashboard'))   # redirect( /dashboard )
+            flash('Login successful :)', 'success')
+            # flash("You have successfully logged in.", 'success')    # python Toastr uses flash to flash pages
+            return redirect(url_for('dashboard')) 
         else:
-            flash('Login Unsuccessful. Please check username and password',)
+            flash('Login Unsuccessful. Please check username and password', 'error')
 
     return render_template("index.html", todayDate=datetime.date.today(), )
 
 
 # posting collected data to database
-
 @app.route("/postData", methods=["POST"])
 def create_data():
+
     """
     To remotely access this route and post data after deployment on Heroku, use:
         <deployed link>/postData
@@ -69,32 +77,51 @@ def create_data():
     print(">>> posting data ....")
     # expected data format from microcontroller;
     # b"temperatureValue", "turbidityValue", "phValue", "waterlevelValue"
-    data = request.data
+    # data = request.data
 
-    # decoding bytes data to string
-    decoded_data = data.decode('utf-8')  
-    key = ['temperature', 'turbidity', 'ph', 'water_level']
+    # # decoding bytes data to string
+    # decoded_data = data.decode('utf-8')  
+    # key = ['temperature', 'turbidity', 'ph', 'water_level']
 
-    # data into list
-    string_value = decoded_data.split(',')
+    # # data into list
+    # string_value = decoded_data.split(',')
 
-    # dictionary processing
-    value = []
-    for v in string_value:
-        v = float(v)
-        value.append(v)
+    # # dictionary processing
+    # value = []
+    # for v in string_value:
+    #     v = float(v)
+    #     value.append(v)
 
-    #merge to dict()
-    data = dict(zip(key, value))
-    # print(data)
+    # #merge to dict()
+    # data = dict(zip(key, value))
+    # # print(data)
 
 
-    # """
-    # for testing purposes with Postman, use:
-    #     request.json
-    # """
-    # data = request.json
-    # print(data)
+    """
+    for testing purposes with Postman(json data format), use:
+        request.json and comment code above to line 79(data.request)
+    """
+    data = request.json
+    print(data)
+
+
+    """
+    This code snippet handles database posting
+    """
+    con = sqlite3.connect('iot_wqms_data.db')
+    cursor = con.cursor()
+
+    print('before try...')
+    try:
+        cursor.execute(""" INSERT INTO iot_wqms_table( temperature, turbidity, ph, water_level) 
+                         VALUES (?, ?, ?, ?) """,
+                   (data["temperature"], data["turbidity"], data["ph"], data["water_level"]))
+        con.commit()
+        print("Data posted SUCCESSFULLY")
+    except Exception as err:
+        print('...posting data FAILED')
+        print(err)
+
 
     """
     This attribute sends an email as an alert whenever data is out of normal range
@@ -111,27 +138,13 @@ def create_data():
     try:
         if (data["temperature"] < 23) | (data["temperature"] > 34) | \
             (data["turbidity"] < 0) | (data["turbidity"] > 5) | \
-                (data["ph"] < 0) | (data["ph"] > 10) | \
+                (data["ph"] < 6) | (data["ph"] > 10) | \
                     (data["water_level"] < 5) | (data["water_level"] > 27) :
             mail.send_mail(data)
+          
     except Exception as err:
         print(f'Email unsuccessful. {err}')
-
     
-    """
-    This code snippet handles the database  
-    """
-    con = sqlite3.connect('iot_wqms_data.db')
-    cursor = con.cursor()
-    try:
-        cursor.execute(""" INSERT INTO iot_wqms_table( temperature, turbidity, ph, water_level) 
-                         VALUES (?, ?, ?, ?) """,
-                   (data["temperature"], data["turbidity"], data["ph"], data["water_level"]))
-        con.commit()
-        print("Data posted SUCCESSFULLY")
-    except Exception as err:
-        print('...posting data FAILED')
-        print(err)
    
     return jsonify({ "Status": "Data posted successfully\n"})
 
@@ -870,6 +883,7 @@ def dashboard():
     turbidity_data = []
     ph_data = []
     waterlevel_data = []
+
     # collecting individual data to collectors
     for row in data:
         temp_data.append(row[2])   
@@ -883,13 +897,24 @@ def dashboard():
     last_ph_data = ph_data[0]
     last_waterlevel_data = waterlevel_data[0]
 
-    # current sum rounded to 2dp
+
+    # message toasting 
+    if (last_temp_data < 23) | (last_temp_data > 34):
+        flash("Abnormal Water Temperature", 'warning')
+    if (last_turbidity_data < 0) | (last_turbidity_data > 5):
+        flash("Abnormal Water Turbidity", 'warning')
+    if (last_ph_data < 6) | (last_ph_data > 10):
+        flash("Abnormal Water pH", 'warning')
+    if (last_waterlevel_data < 5) | (last_waterlevel_data > 27):
+        flash("Abnormal Water Level", 'warning')
+
+    # current sum of 1hour data rounded to 2dp
     current_temp_sum = round(sum(temp_data), 2)
     current_turbidity_sum = round(sum(turbidity_data), 2)
     current_ph_sum = round( sum(ph_data), 2 )
     current_waterlevel_sum = round( sum(waterlevel_data), 2)  
     
-    # fetching 240 data from db to extract the penultimate 120 data
+    # fetching 240 data from db to extract the penultimate 120 data to calculate percentage change
     cursor.execute(" SELECT * FROM iot_wqms_table ORDER BY id DESC LIMIT 240") 
     data = list(cursor.fetchall())
 
@@ -940,6 +965,14 @@ def dashboard():
     waterlevel_change = round(waterlevel_change, 2)
     percentage_waterlevel_change = (waterlevel_change/current_waterlevel_sum) * 100
     percentage_waterlevel_change = round(percentage_waterlevel_change,1)
+
+
+    # notification toast 
+    # flash('toaster notification')
+    # flash("All OK", 'success')
+    # flash("All Normal", 'info')
+    # flash("Not So OK", 'error')
+    # flash("So So", 'warning')
 
     return render_template("dashboard.html", data=data, percentage_temp_change=percentage_temp_change, percentage_ph_change=percentage_ph_change, percentage_turbidity_change=percentage_turbidity_change, percentage_waterlevel_change=percentage_waterlevel_change, temp_change=temp_change, ph_change=ph_change, turbidity_change=turbidity_change, waterlevel_change=waterlevel_change, last_temp_data=last_temp_data, last_ph_data=last_ph_data, last_turbidity_data=last_turbidity_data, last_waterlevel_data=last_waterlevel_data)
 
@@ -1017,10 +1050,11 @@ def get_CSV(prop):
 # main function
 if  __name__ == "__main__":
     try:
-        # turn debug off when deploying
-        # app.debug = True
-        # using local ip address 
-        app.run()
+        # using local ip address and auto pick up changes
+        app.run(debug=True)
+
+        # create database for the system if on not created
+        create_database.create_table()
 
         # using static ip
         # app.run(debug=True, host='192.168.43.110 ', port=5050)   # setting your own ip

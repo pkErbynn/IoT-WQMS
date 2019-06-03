@@ -67,8 +67,8 @@ def send_mail(sensor_data):
                     check_error = f" \nTurbidity out of range(Suspended particles present): {value} NTU "
                     print(check_error)
             if key == "ph":
-                if (value < 4) | (value > 10) :
-                    if value < 4:
+                if (value < 6) | (value > 10) :
+                    if value < 6:
                         status = 'acidic water'
                     else:
                         status = 'basic water'
@@ -82,6 +82,7 @@ def send_mail(sensor_data):
                         status = 'water overflow'
                     check_error = f" \nWater_level out of range({status}): {value} cm "
                     print(check_error)
+                    
         
         # main content of email
         msg.set_content( f'Data collected... \n\n {sensor_data} \n\n {check_error}' )

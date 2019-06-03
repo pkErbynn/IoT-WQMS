@@ -3,4 +3,5 @@ gunicorn==19.9.0
 Jinja2==2.10
 requests==2.21.0
 unicodecsv==0.14.1
-
+Flask-Toastr
+Jinja2  

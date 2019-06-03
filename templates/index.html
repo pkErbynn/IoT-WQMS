@@ -24,6 +24,11 @@
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 
+    <!-- message toast  -->
+    {{ toastr.include_jquery() }}
+    {{ toastr.include_toastr_css() }}
+    {{ toastr.message() }}
+
 </head>
 
 
@@ -43,8 +48,9 @@
     <!-- image and login form -->
     <section>
         <div class="container-fluid">
-            <!-- with the fact that messages = get_flashed_messages -->
-            {% with messages = get_flashed_messages() %}
+
+            <!-- Python flash message -->
+            <!-- {% with messages = get_flashed_messages() %}
             {% if messages %}
             {% for message in messages %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -55,7 +61,7 @@
             </div>
             {% endfor %}
             {% endif %}
-            {% endwith %}
+            {% endwith %} -->
 
             <div class="row my-5">
                 <div class="col-12 col-md-6 m-auto mx-2">
@@ -108,6 +114,9 @@
     <script src="../static/bootstrap-4.1.3/jquery.min.js"></script>
     <script src="../static/bootstrap-4.1.3/popper.min.js"></script>
     <script src="../static/js/main.js"></script>
+
+     <!-- templating python toasting notification -->
+     {{ toastr.include_toastr_js() }}
 </body>
 
 </html>

@@ -7,8 +7,8 @@
     <title>WQMS_Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- refreshes the page with 30 seconds interval -->
-    <meta http-equiv="refresh" content="30">
+    <!-- refreshes the page with 10 seconds interval -->
+    <meta http-equiv="refresh" content="15">
 
     <!-- Bootstrap CDN -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -84,7 +84,7 @@
 
         /* table */
         table,
-        th,
+        th,dashboard
         td {
             border-collapse: collapse;
         }
@@ -137,10 +137,19 @@
         }
     </style>
 
+    <!-- """adding Fask's flash non-blocking notifications in templates using toastr""" -->
+    {{ toastr.include_jquery() }}
+    {{ toastr.include_toastr_css() }}
+    {{ toastr.message() }}
+    
 </head>
 
 
+
+<!--------------------------------------------- Body of webpage --------------------------------------->
+
 <body>
+
     <!-- header -->
     <header>
         <div class="container-fluid bg-white p-3 text-muted shadow d-flex justify-content-between">
@@ -171,8 +180,8 @@
         </div>
     </div>
 
-    <!-- flash messaging, if login succeeds -->
-    <div class="container-fluid">
+    <!-- flash messaging, if login succeeds ...different from Toastr notify module -->
+    <!-- <div class="container-fluid">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
@@ -186,7 +195,7 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
-    </div>
+    </div> -->
 
     <!-- breadcrumb -->
     <div class="container mt-4">
@@ -304,12 +313,6 @@
         </table>
     </div><br><br>
 
-    <!-- <div class="container">
-        <a href="/download/hour_data">
-            <button type="button" class="btn btn-primary">Hourly Data</button>
-        </a>
-    </div> -->
-
 
     <!-- footer -->
     <footer style="width: 100%">
@@ -337,6 +340,10 @@
 
     <!-- user defined js must be last -->
     <script src="../static/js/main.js"></script>
+
+    <!-- templating python toaster -->
+    {{ toastr.include_toastr_js() }}
+
 </body>
 
 </html>
