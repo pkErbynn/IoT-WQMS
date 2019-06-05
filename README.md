@@ -53,14 +53,30 @@ Why our system is different from other systems:
  - Install modules in requirement file 
 
 
+## Usage:
+ 1. Connect esp32 with server by 
+ 2. Clone the repository::
+   ```
+   git clone https://github.com/Erbynn/IoT-WQMS.git
+        cd IoT-WQMS
+   ```
+ 3. Create and activate a virtual environment::
+    ```
+    virtualenv env
+        source env/bin/activate
+    ```
+  4. Install requirements::
+    ```
+        pip install -r 'example/requirements.txt'
+    ```
 
+  4. Run the application::
+    ```
+        python app.py
+    ```
+ 
 
-
-Usage:
-    Set up hardwares/sensors to read data
-    Connect micro-controller to the internet
-    Run <python app.py>
-    Visit url provided. Enjoy :)
+ 
 
 
 
