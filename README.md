@@ -47,14 +47,16 @@ Why our system is different from other systems:
  ## Getting Started
  ### Prerequisites
  - Clone repo
- - Add Esp32 packages to enable board   
+ - Add Esp32 packages to enable board  
+ - Sensor codes link 
+        [here](github.com/joewzy/WQMS)
  
  ### Installation
  - Install modules in requirement file 
 
 
 ## Usage:
- 1. Connect esp32 with server by 
+ 1. Connect esp32 to network
  2. Clone the repository::
    ```
    git clone https://github.com/Erbynn/IoT-WQMS.git
@@ -67,62 +69,28 @@ Why our system is different from other systems:
     ```
   4. Install requirements::
     ```
-        pip install -r 'example/requirements.txt'
-    ```
-
-  4. Run the application::
+    pip install -r 'requirements.txt'
+    ```    
+  5. Run the application::
     ```
         python app.py
     ```
- 
-
- 
-
-
-
-Project Team Members
-    John PK Erbynn  - john.erbynn@gmail.com
-    Josiah Nii Kortey - josiahkotey13@gmail.com
-    Isaac Duffour Agyen - izagyen96@gmail.com
-
-
-Open Source Project Repo.
-    Server codes: Github.com/erbynn/IoT-WQMS
-    Sensor codes: 
+  5. Enjoy :+1:
+  
+  
+## Authors::
+   - John PK Erbynn [send mail](john.erbynn@gmail.com)
+   - Josiah Kotey [send mail](josiahkotey13@gmail.com)
+   - Isaac Agyen Duffour [Send mail](izagyen96@gmail.com)
+   
+## Acknoledgement
+    - Project Supervisor, Mr. Isaac A. Mensah
+    - Denis Effa Amposah
+    - Dawud Ismail
+    - Josiah Terkper
 
 
-
-
-
-
-
-
-
-
-```general info````
-
-Turbidity is the cloudiness or haziness of a fluid caused by large numbers of individual particles that are generally invisible to the naked eye, similar to smoke in air. The measurement of turbidity is a key test of water quality.
-
- 
- WQMS controls sensors placed in water
- ...collects anolgue data into digital format
- ...organise and store in sqlite database
- ...retrieved and processed for description
- ...to be rendered in a simple web interface on the front
- ...for interpretation
-
-
-`````analysis`````
-analysis of data is deriving, extracting useful, relevant and meaning full info from observations....that lead to better decisions in turn adding value to individuals, companies and institution
-...descriptive analysis summarizes and describes data and makes it understand how things are going
-why analyz....for parameter estimation(inferring unknown), prediction(forcasting), fault detection(process monitoring)
-
-analyzing and interpreting data
-for analyzing...organization, graphing and design to see the changes occure over time
-for interpreting...evaluate, mathematics statistics for understanding significant of the data readings
-
-independable variables: datetime
-dependable variables: ph,temp,turbidity,water_level
+   
 
 
 
