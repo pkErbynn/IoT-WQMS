@@ -18,6 +18,29 @@ Why our system is different from other systems:
 - Sends data to cloud sever 
 - And publishes the data on webpage 
 
+## Hardware Implementation
+- Espduino-32
+- Waterproofed temperature sensor DS18B20
+- pH sensor- E-201-C
+- Turbidity Sensor- SKU SEN0189
+- Ultrasonic Sensor- HC-SR04
+
+## Software Implementation
+- Front-end
+    - HTML/CSS/ 
+    - Bootstrap
+    - Jinja
+    - Chartjs
+- Backend
+    - Python: logic
+    - Flask: server
+    - SMTP: messaging 
+    - SQLite: DB
+    - C program: sensor program on Esp32
+    - HTTP
+    - Heroku
+    - VsCode
+
 
 
 This project is intended to ...
