@@ -5,19 +5,13 @@
 ### The purpose of this project is to design and implement a water monitoring system to consistently monitor the status of water to be quality and conducive for fish farming in aquaponic tanks at the aquaculture sector.
 
 - Since the composition of pond water is continuously affected by environmental changes making it difficult for the farmers to consistently monitor the status of water therefore our WQMS was developed to monitor the variations.
-- Water quality test can be done at source other than raditional laboratory testing.
-The system:
-    1. Measures the temperature, turbidity, pH and water level, of the pond to maintain the water quality.
-    2. Quickly identifies changes in water
-    3. Provide visual information
+- Water quality test can be done at source other than shipping water samples to laboratory reducing traditional laboratory testing.
+Why our system is different from other systems:
+    1. Measures the temperature, turbidity, pH and water level, of the pond to maintain and control the water quality.
+    2. Quickly identifies specific parameter change in water
+    3. Generates visual information(line chart)
     4. Sends notification alert
 
-Monitor the status of water in real time ensuring  conducive water for fish farming. 
-
-Elimination of  traditional laboratory test.
-
-
-Difficulty in monitoring status of water in real time
 
 
 
