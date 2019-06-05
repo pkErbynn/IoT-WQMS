@@ -48,8 +48,10 @@ Why our system is different from other systems:
  ### Prerequisites
  - Clone repo
  - Add Esp32 packages to enable board  
- - Sensor codes link 
-        [here](github.com/joewzy/WaterQualityMS)
+ - Sensor codes link at
+    ```
+       github.com/joewzy/WaterQualityMS.git
+    ```
  
  ### Installation
  - Install modules in requirement file 
