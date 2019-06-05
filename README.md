@@ -49,7 +49,7 @@ Why our system is different from other systems:
  - Clone repo
  - Add Esp32 packages to enable board  
  - Sensor codes link 
-        [here](github.com/joewzy/WQMS)
+        [here](github.com/joewzy/WaterQualityMS)
  
  ### Installation
  - Install modules in requirement file 
@@ -68,13 +68,18 @@ Why our system is different from other systems:
         source env/bin/activate
     ```
   4. Install requirements::
-    ```
+   
     pip install -r 'requirements.txt'
-    ```    
+        
   5. Run the application::
-    ```
+     ```
         python app.py
-    ```
+     ```
+        
+  6. Data is published on
+        ```
+        wqms.herokuapp.com/dashboard
+        ```
   6. Enjoy :+1:
   
   
@@ -84,10 +89,10 @@ Why our system is different from other systems:
    - Isaac Agyen Duffour [Send mail](izagyen96@gmail.com)
    
 ## Acknoledgement
-    - Project Supervisor, Mr. Isaac A. Mensah
-    - Denis Effa Amposah
-    - Dawud Ismail
-    - Josiah Terkper
+   - Project Supervisor, Mr. Isaac A. Mensah
+   - Denis Effa Amposah
+   - Dawud Ismail
+   - Josiah Terkper
   
  ## Deployment 
 This extension is a project to improve our software development skills. Any suggestions or tips are welcome.
