@@ -75,7 +75,7 @@ Why our system is different from other systems:
     ```
         python app.py
     ```
-  5. Enjoy :+1:
+  6. Enjoy :+1:
   
   
 ## Authors::
@@ -88,6 +88,10 @@ Why our system is different from other systems:
     - Denis Effa Amposah
     - Dawud Ismail
     - Josiah Terkper
+  
+ ## Deployment 
+This extension is a project to improve our software development skills. Any suggestions or tips are welcome.
+Thank you.
 
 
    
