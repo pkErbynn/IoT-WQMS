@@ -13,7 +13,10 @@ Why our system is different from other systems:
     4. Sends notification alert
 
 ## System operation
-- Measures water physical(temperature, depth, turbidity) and chemical(pH) characteristics of water
+- Measures water temperature, depth, turbidityand pH of water with optimum ranges
+            Turbidity(Nephelometric Turbidity Units or Jackson Turbidity Unit) 0-5
+            pH  4-10
+            Water level 5-27 (based on site)
 - Processes data on microcontroller using Espduino#2 
 - Sends data to cloud sever 
 - And publishes the data on webpage 
@@ -39,43 +42,18 @@ Why our system is different from other systems:
     - C program: sensor program on Esp32
     - HTTP
     - Heroku
-    - VsCode
+   
+   
+ ## Getting Started
+ ### Prerequisites
+ - Clone repo
+ - Add Esp32 packages to enable board   
+ 
+ ### Installation
+ - Install modules in requirement file 
 
 
 
-This project is intended to ...
-    ...to continuously monitor the chemical properties( pH, temperature) of water for fish farming.
-    ...to consistently monitor the physical properties(turbidity, water level) of water for aquaculture
-    ...to remotely keep track of the status of water in real time and send email notification when wrong data is recorded.
-    ...to generate a live visual chart of the properties of water pond for analysis and interpretation
-    ...to collect data of the status of water for research by scientists 
-
-
-  The normal parameter ranges for tilapia(fish) production
-            Temperature  23-34
-            Turbidity(Nephelometric Turbidity Units or Jackson Turbidity Unit) 0-5
-            pH  4-10
-            Water level 5-27 (based on site)
-
-
-
-Technologies Used
-    HTML/CSS
-    Python
-    Chart.js
-    Sqlite DB
-    SMTP
-    Heroku
-    Espduino 32
-    Temperature sensor - DS18B20
-    pH sensor - E-201-C
-    Turbidity sensor - SEN0189
-    Ultrasonic sensor
-    9V battery
-
-
-How it operates:
-    The system is connected to the internet and transfers the data collected to a cloud server and send the data to the user(farmer,scientist) via web client in real time for analysis and to take certain measures to ensure that the water is conducive and for research purposes.
 
 
 Usage:
