@@ -2,7 +2,7 @@
 
 
 
-### The purpose of this project is to design and implement a portable and low-cost water monitoring system to consistently monitor the status of water to be quality and conducive for fish farming in aquaponic tanks at the aquaculture sector.
+### The purpose of this project is to design and implement a portable and low-cost water monitoring system to consistently monitor the status of water to be quality and conducive for fish farming in aquaponic tanks at the aquaculture sector. It measures the physio-chemical parameters of the water and transmit the values to the cloud. The monitoring station is accessed by mobile devices, laptops or desktop wirelessly to make analysis and conclusion making and if the readings violate the threshold then a control command to the farmer  for the physio-chemical parameters of water to be adjusted. 
 
 - Since the composition of pond water is continuously affected by environmental changes making it difficult for the farmers to consistently monitor the status of water therefore our WQMS was developed to monitor the variations.
 - Water quality test can be done at source other than shipping water samples to laboratory reducing traditional laboratory testing.
