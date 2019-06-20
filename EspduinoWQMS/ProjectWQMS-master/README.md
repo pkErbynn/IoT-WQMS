@@ -1,4 +1,4 @@
-# ProjectWQMS
+# ProjectWQMS_Esp32
 Water  Quality Monitoring and Notification System
 The project monitors physical aspects of water in a given system such as water level, turbidity,temperature and one chemical aspect; the pH of the water.
 The WQMS features a web interface as an extra to the physical system.The system components include: 
