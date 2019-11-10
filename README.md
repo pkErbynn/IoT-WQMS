@@ -97,7 +97,7 @@ Why our system is different from other systems:
    - Josiah Terkper
   
  ## Deployment 
-This extension is a project to improve our software development skills. Any suggestions or tips are welcome.
+This extension is a project to improve our software development skills. Any suggestions, or tips as well as Pull Requests are welcome.
 Thank you.
 
 
