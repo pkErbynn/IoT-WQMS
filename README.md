@@ -79,9 +79,9 @@ Why our system is different from other systems:
      ```
         
   6. Data is published on
-        ```
+        
         ![wqms.herokuapp.com/dashboard](wqms.herokuapp.com/dashboard)
-        ```
+       
   6. Enjoy :+1:
   
   
