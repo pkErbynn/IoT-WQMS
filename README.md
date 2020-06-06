@@ -78,14 +78,15 @@ Why our system is different from other systems:
         python app.py
      ```
         
-  6. Data is published on
-        
-        ![wqms.herokuapp.com/dashboard](wqms.herokuapp.com/dashboard)
-       
+  6. Data is published on ![http://wqms.herokuapp.com/dashboard](wqms.herokuapp.com/dashboard)
+
   6. Enjoy :+1:
+ 
+ ## Sample Images
+ ![](images/fullsetup.png)
   
   
-## Authors::
+## Authors/Team::
    - John PK Erbynn [send mail](john.erbynn@gmail.com)
    - Josiah Kotey [send mail](josiahkotey13@gmail.com)
    - Isaac Agyen Duffour [Send mail](izagyen96@gmail.com)
