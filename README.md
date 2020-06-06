@@ -83,8 +83,9 @@ Why our system is different from other systems:
   6. Enjoy :+1:
  
  ## Sample Images
- ![](images/fullsetup.png)
-  
+ ![](images/sensors-at-service.jpg)
+ ![](images/portable-hardware-package.jpg)
+ ![](images/full-setup.JPG)
   
 ## Authors/Team::
    - John PK Erbynn [send mail](john.erbynn@gmail.com)
