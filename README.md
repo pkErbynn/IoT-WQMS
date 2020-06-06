@@ -78,7 +78,7 @@ Why our system is different from other systems:
         python app.py
      ```
         
-  6. Data is published on ![http://wqms.herokuapp.com/dashboard](wqms.herokuapp.com/dashboard)
+  6. Data is published on [http://wqms.herokuapp.com/dashboard](wqms.herokuapp.com/dashboard)
 
   6. Enjoy :+1:
  
