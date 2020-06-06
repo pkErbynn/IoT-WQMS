@@ -84,6 +84,8 @@ Why our system is different from other systems:
  
  ## Sample Images
  <img src="images/sensors-at-service.jpg" width="300">  <img src="images/portable-hardware-package.jpg" width="300"> <img src="images/full-setup.JPG" width="500" aligh="right">
+ <img src="images/temp-chard.png" width="500" aligh="right">
+ <img src="images/wqms-dashboard.png" width="500" aligh="right">
  
 ## Authors/Team::
    - John PK Erbynn [send mail](john.erbynn@gmail.com)
