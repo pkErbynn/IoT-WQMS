@@ -1,7 +1,7 @@
 Flask==1.0.2
 gunicorn==19.9.0
 Jinja2==2.10
-requests==2.21.0
+requests==2.31.0
 unicodecsv==0.14.1
 Flask-Toastr
 Jinja2  
